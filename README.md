@@ -1,4 +1,4 @@
 # Source Code for my website
-
-Domain: calebburke.dev
-
+Domains:
+* calebburke.dev
+* calebburke.xyz
