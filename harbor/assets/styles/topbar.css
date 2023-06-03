@@ -1,0 +1,19 @@
+.topbar {
+    display: flex;
+    margin-left: var(--sidebar-size);
+    height: var(--topbar-size);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    justify-content: left;
+    align-items: center;
+    background-color: #27282b;
+}
+
+.topbar-item {
+    padding-left: 2rem;
+}
+
+.topbar-item span {
+    color: var(--header-primary);
+}
