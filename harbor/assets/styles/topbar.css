@@ -13,3 +13,7 @@
 .topbar-item {
     padding-left: 2rem;
 }
+
+.topbar-item span {
+    color: var(--header-primary);
+}
