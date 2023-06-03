@@ -40,21 +40,3 @@ h1 {
 p {
     color: var(--text-primary);
 }
-
-#main-wrapper {
-    margin-left: var(--sidebar-size);
-    padding: 1rem;
-}
-
-#main {
-    margin-top: var(--topbar-size);
-    margin-left: 3rem;
-}
-
-#main h1 {
-    margin: 10px 0 10px 0;
-}
-
-#main p {
-    margin: 10px 0 10px 0;
-}

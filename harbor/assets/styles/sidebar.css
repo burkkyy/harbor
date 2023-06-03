@@ -1,8 +1,13 @@
 .sidebar-wrapper {
+    display: none;  /* sidebar.js will handle the display */
     width: var(--sidebar-size);
     height: 100%;
     position: fixed;
     background-color: var(--sidebar-bg);
+}
+
+.sidebar-wrapper.show {
+    display: block;
 }
 
 .sidebar {
