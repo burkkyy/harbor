@@ -4,6 +4,7 @@
     width: 100%;
     position: fixed;
     top: 0;
+    left: 0;
     justify-content: left;
     align-items: center;
     background-color: #27282b;
@@ -16,6 +17,11 @@
 .topbar-item:first-child {
     cursor: pointer;
     padding-left: 1rem;
+}
+
+.topbar a {
+    text-decoration: none;
+    color: var(--header-primary);
 }
 
 .topbar svg {

@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .sidebar .sidebar-item {
@@ -28,9 +28,18 @@
     font-size: small;
 }
 
+/*
+    Avatar and description
+*/
 .sidebar .sidebar-item:first-child {
     margin-top: var(--topbar-size);
-    padding: 3rem;
+    padding: 3rem 3rem 0 3rem;
+}
+
+.sidebar:first-child img {
+    width: 6rem;
+    border-radius: 50%;
+    border: 2px solid #dedede41;
 }
 
 .sidebar .sidebar-item:first-child h1 {
@@ -44,16 +53,52 @@
     font-style: oblique;
 }
 
-.sidebar:first-child img {
-    width: 6rem;
-    border-radius: 50%;
-    border: 2px solid #dedede41;
+/* 
+    Sections tab
+*/
+.sidebar .sidebar-item .sidebar-sections {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 30%;
 }
 
+.sidebar .sidebar-item .sidebar-sections .sections-link {
+    display: flex;
+    padding: 10px 0 10px 0;
+    text-decoration: none;
+    
+    opacity: 40%;
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+}
 
+.sidebar .sidebar-item .sidebar-sections .sections-link:hover {
+    opacity: 90%;
+}
+
+.sidebar .sidebar-item .sidebar-sections .sections-link span {
+    font-size: large;
+    width: 100%;
+    color: var(--text-primary);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.sidebar .sidebar-item .sidebar-sections .sections-link svg {
+    fill: #afafaf;
+    margin-right: 10%;
+    min-width: 25px;
+    min-height: 25px;
+}
+
+/* 
+    Socials and other links 
+*/
 .sidebar .sidebar-item:last-child {
-    flex-direction: row;
+    margin-top: auto;
     margin-bottom: 1rem;
+    flex-direction: row;
 }
 
 .sidebar .sidebar-item:last-child svg {
