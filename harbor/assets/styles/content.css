@@ -1,0 +1,16 @@
+.content-wrapper {
+    padding: 1rem;
+}
+
+.content {
+    margin-top: var(--topbar-size);
+    margin-left: 3rem;
+}
+
+.content h1 {
+    margin: 10px 0 10px 0;
+}
+
+.content p {
+    margin: 10px 0 10px 0;
+}

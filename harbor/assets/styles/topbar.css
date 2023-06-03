@@ -1,6 +1,5 @@
 .topbar {
     display: flex;
-    margin-left: var(--sidebar-size);
     height: var(--topbar-size);
     width: 100%;
     position: fixed;
@@ -12,6 +11,22 @@
 
 .topbar-item {
     padding-left: 2rem;
+}
+
+.topbar-item:first-child {
+    cursor: pointer;
+    padding-left: 1rem;
+}
+
+.topbar svg {
+    fill: #afafaf;
+    min-width: 25px;
+    opacity: 50%;
+    transition: opacity 0.3s ease;
+}
+
+.topbar svg:hover {
+    opacity: 100%;
 }
 
 .topbar-item span {
