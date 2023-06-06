@@ -14,7 +14,7 @@ const path = require('path');
 
 // Start the express app
 const app = express();
-const PORT = 8080;
+const PORT = 3000;
 
 // Configure express app
 app.set('view engine', 'ejs');
