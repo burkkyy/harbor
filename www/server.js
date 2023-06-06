@@ -6,7 +6,7 @@
  *
  * Entry point for my nodejs server
  *
-*/ 
+*/
 
 // Import statements
 const express = require('express');
@@ -16,40 +16,18 @@ const path = require('path');
 const app = express();
 const PORT = 8080;
 
+// Configure express app
 app.set('view engine', 'ejs');
-
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
-app.use(express.static(__dirname + '/public/assets'));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/pages/home.html'));
+// Set up the routers
+const root_router = require('./routes/root');
+
+// Add the routers to middleware
+app.use('/', root_router);
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`)
 });
-
-app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/pages/home.html'));
-});
-
-app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/pages/about.html'));
-});
-
-app.get('/render', (req, res) => {
-    res.render('layout');
-});
-
-app.get('/test', (req, res) => {
-    res.status(200).send({
-        ar: 'a',
-        tseet1: 'a32'
-    })
-});
-
-app.post('/test/:id', (req, res) => {
-    const { id } = req.params;
-    const { body } = req.body;
-
-    console.log(body);
-    res.status(200).send();
-});
-
-app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
