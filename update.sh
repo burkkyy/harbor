@@ -1,6 +1,6 @@
 #!/bin/bash
 
-outpath=/var/www/harbor
+outpath=/var/www
 config=/etc/nginx/nginx.conf
 sites_enabled=/etc/nginx/sites-enabled
 sites_available=/etc/nginx/sites-available
@@ -10,7 +10,7 @@ if [ $(id -u) -ne 0 ]; then echo "[!] Not running as root!">&2; exit 1; fi
 # Update html/css/js
 echo "[*] Updating $outpath..."
 [ -d $outpath ] && rm -r $outpath
-cp -r harbor/ $outpath || exit 1
+cp -r www/ $outpath || exit 1
 
 # Update config file
 echo "[*] Updating $config..."
@@ -33,4 +33,3 @@ cp -r nginx/sites-available/ $sites_available || exit 1
 # Reload nginx
 echo "[-] Reloading nginx..."
 nginx -s reload
-
