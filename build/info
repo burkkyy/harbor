@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# @file info.sh
+# @file info
 # @author Caleb Burke
 # @version 1.0
 # @date June 6, 2023
@@ -14,7 +14,7 @@
 [ $# -ne 0 ] && info=$1 || info=$(cat -)
 
 # Print out the info, with color
-echo -e "\e[0;34m[-]\e[0m $info"
+echo -e "\e[1;34m[-]\e[0m $info"
 
 # Exit with code 0, aka success
 exit 0
