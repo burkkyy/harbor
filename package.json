@@ -1,0 +1,24 @@
+{
+  "name": "harbor",
+  "version": "1.0.0",
+  "description": "Build scripts",
+  "main": "index.js",
+  "scripts": {
+    "test": "build/error test",
+    "start": "build/error start",
+    "build-nginx": "build/build-nginx.sh",
+    "build-node": "build/build-node.sh",
+    "build-autopuller": "build/build-autopuller.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qburrke/harbor.git"
+  },
+  "keywords": [],
+  "author": "Caleb Burke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qburrke/harbor/issues"
+  },
+  "homepage": "https://github.com/qburrke/harbor#readme"
+}

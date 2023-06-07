@@ -1,0 +1,3 @@
+2023/06/07 03:52:30 [warn] 211431#211431: the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /etc/nginx/nginx.conf:6
+2023/06/07 03:52:30 [emerg] 211431#211431: cannot load certificate "/etc/letsencrypt/live/calebburke.dev/fullchain.pem": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(/etc/letsencrypt/live/calebburke.dev/fullchain.pem, r) error:10000080:BIO routines::no such file)
+nginx: configuration file /etc/nginx/nginx.conf test failed

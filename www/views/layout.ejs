@@ -35,7 +35,7 @@
             </div>
             <div class="sidebar-item">
                 <div class="sidebar-sections">
-                    <a class="sections-link" href="#">
+                    <a class="sections-link" href="museum">
                         <svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <path
@@ -43,7 +43,7 @@
                         </svg>
                         <span>Museum</span>
                     </a>
-                    <a class="sections-link" href="#">
+                    <a class="sections-link" href="library">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-book-half" viewBox="0 0 16 16">
                             <path
@@ -51,7 +51,7 @@
                         </svg>
                         <span>Library</span>
                     </a>
-                    <a class="sections-link" href="about.html">
+                    <a class="sections-link" href="about">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16"
                             viewBox="0 0 50 50">
                             <path
@@ -92,8 +92,7 @@
     </div>
     <div class="content-wrapper">
         <div class="content">
-            <p>Body: <%= locals.body %>
-            </p>
+            <%- locals.content || '<h1>Error loading content</h1>' %>
         </div>
     </div>
     <script type="text/javascript" src="assets/js/sidebar.js"></script>

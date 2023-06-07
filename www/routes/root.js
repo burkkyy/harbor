@@ -6,45 +6,44 @@
  *
  * Routes defined for /
  *
-*/ 
+*/
 
-const path = require('path');
 const express = require('express');
+const path = require('path');
+const { readFile } = require('fs').promises;
+
+// Module for parsing markdown
+const { marked } = require('marked');
+
+// Modules for sanatizing markdown files, to prevent code injection
+const create_dom_purifier = require('dompurify');
+const { JSDOM } = require('jsdom');
+
+// Create the markdown purifier
+const dom_purify = create_dom_purifier(new JSDOM().window);
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    //res.render('layout');
-    //res.send('hello');
-    
-    res.sendFile(path.join(__dirname, '../public/pages/home.html'));
-});
+router.get('/', render_page('home.md'));
 
-router.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/pages/home.html'));
-});
+router.get('/home', (req, res) => { res.redirect('/'); });
 
-router.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/pages/about.html'));
-});
+router.get('/about', render_page('about.md'));
 
-router.get('/render', (req, res) => {
-    res.render('layout', { body: "This is the body"});
-});
+router.get('/test', render_page('about.md'));
 
-router.get('/test', (req, res) => {
-    res.status(200).send({
-        ar: 'a',
-        tseet1: 'a32'
-    })
-});
+function render_page(page){
+    return async (req, res) => {
+        _md = await readFile(
+            path.join(__dirname, `../public/pages/${page}`), 'utf-8'
+        );
 
-router.post('/test/:id', (req, res) => {
-    const { id } = req.params;
-    const { body } = req.body;
-
-    console.log(body);
-    res.status(200).send();
-});
+        _html = dom_purify.sanitize(
+            marked.parse(_md, { mangle: false, headerIds: false })
+        );
+        
+        res.render('layout', { content: _html });
+    }
+}
 
 module.exports = router;
