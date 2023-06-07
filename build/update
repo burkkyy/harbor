@@ -1,14 +1,11 @@
 #!/bin/bash
 
-# @file update.sh
+# @file update
 # @author Caleb Burke
 # @version 1.0
 # @date June 7, 2023
 #
 # Script to print out update info from other build scripts.
-#
-# Please keep in mind I only wrote this script to work for just npm commands and 
-# update info from other scripts in this directory.
 
 # Get update string from argv, otherwise from stdin
 [ $# -ne 0 ] && update=$1 || update=$(cat -)

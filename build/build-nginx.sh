@@ -25,22 +25,22 @@ sudo -v
 [ $? -ne 0 ] && { $_error "sudo"; exit 1; }
 
 # Update html/css/js
-$_update "Updating $outpath..."
+$_update "Updating $outpath/"
 [ -d $outpath ] && sudo rm -r $outpath
 sudo cp -r www/ $outpath || exit 1
 
 # Update config file
-$_update "Updating $config..."
+$_update "Updating $config/"
 [ -f $config ] && sudo rm $config
 sudo cp nginx/nginx.conf $config || exit 1
 
 # Update sites-enabled
-$_update "Updating $sites_enabled..."
+$_update "Updating $sites_enabled/"
 [ -d $sites_enabled ] && sudo rm -r $sites_enabled
 sudo cp -r nginx/sites-enabled/ $sites_enabled || exit 1
 
 # Update sites-available
-$_update "Updating $sites_available..."
+$_update "Updating $sites_available/"
 [ -d $sites_available ] && sudo rm -r $sites_available
 sudo cp -r nginx/sites-available/ $sites_available || exit 1
 
