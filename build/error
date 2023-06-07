@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# @file error.sh
+# @file error
 # @author Caleb Burke
 # @version 1.0
-# @date June 6, 2023
+# @date June 7, 2023
 #
 # Script to print out errors from other build scripts.
 #
@@ -29,7 +29,7 @@ case $error in
     ;;
 
     "sudo")
-        _p "You entered the wrong password!"
+        _p "You have to enter you sudo password!"
     ;;
 
     "update")

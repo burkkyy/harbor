@@ -1,20 +1,17 @@
 #!/bin/bash
 
-# @file info.sh
+# @file info
 # @author Caleb Burke
-# @version 1.0
-# @date June 6, 2023
+# @version 1.1
+# @date June 7, 2023
 #
 # Script to print out info from other build scripts.
-#
-# Please keep in mind I only wrote this script to work for just npm commands and 
-# info from other scripts in this directory.
 
 # Get info string from argv, otherwise from stdin
 [ $# -ne 0 ] && info=$1 || info=$(cat -)
 
 # Print out the info, with color
-echo -e "\e[0;34m[-]\e[0m $info"
+echo -e "\e[1;34m[-]\e[0m $info"
 
 # Exit with code 0, aka success
 exit 0
