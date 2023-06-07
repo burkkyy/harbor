@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
  * @file server.js
  * @author Caleb Burke
@@ -24,9 +26,13 @@ app.use(express.json());
 
 // Set up the routers
 const root_router = require('./routes/root');
+const museum_router = require('./routes/museum');
+const library_router = require('./routes/library');
 
 // Add the routers to middleware
 app.use('/', root_router);
+app.use('/museum', museum_router);
+app.use('/library', library_router);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
