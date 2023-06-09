@@ -11,7 +11,7 @@
 [ $# -ne 0 ] && msg=$1 || msg=$(cat -)
 
 # Print, with color
-echo -e "\e[1;32m[-]\e[0m $msg"
+echo -e "\e[1;32m[+]\e[0m $msg"
 
 # Exit with code 0, aka success
 exit 0
