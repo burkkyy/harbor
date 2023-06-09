@@ -4,11 +4,10 @@
   "description": "Build scripts",
   "main": "index.js",
   "scripts": {
-    "test": "build/error test",
-    "start": "build/error start",
-    "build-nginx": "build/build-nginx.sh",
-    "build-node": "build/build-node.sh",
-    "build-autopuller": "build/build-autopuller.sh"
+    "test": "util/print/error test",
+    "start": "util/print/error start",
+    "build-nginx": "util/build/build-nginx.sh",
+    "build-node": "util/build/build-node.sh"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,13 @@
+[Unit]
+Description=My website powered by nodejs
+
+[Service]
+ExecStart=/var/www/server.js
+Restart=always
+User=nobody
+Group=nogroup
+Environment=NODE_ENV=production
+WorkingDirectory=/var/www/
+
+[Install]
+WantedBy=multi-user.target
