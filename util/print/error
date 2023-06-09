@@ -28,6 +28,10 @@ case $error in
         $(dirname "$0")/info "Run 'npm run' for all build commands."
     ;;
 
+    "path")
+        _p "Do not manually run this script! See README for details"
+    ;;
+
     "sudo")
         _p "You have to enter you sudo password!"
     ;;
