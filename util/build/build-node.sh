@@ -70,6 +70,7 @@ make_auto_update(){
     echo "systemctl stop puffer" >> $job
     echo "[ -d /var/www ] && rm -r /var/www || exit 1" >> $job
     echo "cp -r $(pwd)/www /var/www" >> $job
+    echo "sleep 1" >> $job
     echo "systemctl start puffer" >> $job
 
     # Move it to /usr/local/bin/ so our cronjob can file it
