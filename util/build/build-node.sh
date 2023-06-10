@@ -16,21 +16,6 @@ _update=$_dir/../print/update
 _error=$_dir/../print/error
 _success=$_dir/../print/success
 
-builder() {
-    for arg in $@; do
-        n1=$arg[@]
-        n2=("${!n1}")
-        
-        p1=${n2[0]}
-        p2=${n2[1]}
-
-        echo -e "\e[0;32m[*]\e[0m Copying $p1 to $p2"
-        [ -f $p2 ] && sudo rm $p2
-        [ -d $p2 ] && sudo rm -r $p2
-        sudo cp -r $p1 $p2 || ${ sudo -k; exit 1; }
-    done
-}
-
 write_cronjob(){
     # $1 the job to append to crontab
     # $2 the user for the cronjob
@@ -64,18 +49,27 @@ make_auto_update(){
 
     # Move service file to /etc/systemd/system/
     # TODO create a new user for nodejs service, using root is very bad
+    $_update "Moving service file to /etc/systemd/system"
     [ ! -f $ser ] && { $_error "notfound"; exit 1; }
     sudo mv $ser /etc/systemd/system/  
 
     # Build the cronjob
     # TODO Make this is own cfg, conf or sh file
+    $_update "Building cronjob..."
     echo "systemctl stop puffer" >> $job
     echo "cd $(pwd)/www && npm i" >> $job
     echo "[ \$? -ne 0 ] && { echo '\$(date) :: installing npm packages failed! Did not update website.' >> CRON_ERROR.log; exit 1; }" >> $job
     echo "[ -d /var/www ] && rm -r /var/www" >> $job
+    echo "\e[0;32m[*]\e[0m Copying $(pwd) to /var/www" >>$job
     echo "cp -r $(pwd)/www /var/www" >> $job
     echo "sleep 1" >> $job
     echo "systemctl start puffer" >> $job
+
+    # Run the job
+    $job
+
+    # Start the webserver
+    systemctl start puffer    
 
     # Move it to /usr/local/bin/ so our cronjob can file it
     sudo mv $job /usr/local/bin/
