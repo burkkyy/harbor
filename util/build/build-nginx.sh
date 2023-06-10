@@ -77,7 +77,7 @@ make_auto_update(){
     echo "builder nginx_conf sites_enabled sites_available" >> $out
 
     # Test the script
-    ./cfg/update-nginx.job
+    ./$_dir/cfg/update-nginx.job
 
     # If script is wrong, clear it and error out. Overwise move on
     sudo nginx -t
