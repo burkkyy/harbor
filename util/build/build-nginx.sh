@@ -5,7 +5,8 @@
 # @version 1.1
 # @date June 7, 2023
 #
-# Do not run this script from here. From the root of this project run 'npm run build-nginx'
+# DO NOT RUN this script from here. 
+# From the root of this project run 'npm run build-nginx'
 
 # Store this dir
 _dir=$(dirname "$0")
@@ -16,16 +17,12 @@ _update=$_dir/../print/update
 _error=$_dir/../print/error
 _success=$_dir/../print/success
 
-_err_exit(){
-    [ $1 ] && $_error $1
-    sudo -k
-    exit 1
-}
+# Define where a each file is getting copied to
+nginx_conf=("$(pwd)/nginx/nginx.conf" "/etc/nginx/nginx.conf")
+sites_enabled=("$(pwd)/nginx/sites-enabled" "/etc/nginx/sites-enabled/")
+sites_available=("$(pwd)/nginx/sites-available" "/etc/nginx/sites-available/")
 
-_exit(){
-    [ $1 ] && $_info $1
-    exit 0
-}
+[[ "$0" != "util/build/build-nginx.sh" ]] && { ../print/error "path"; exit 1; }
 
 builder() {
     for arg in $@; do
@@ -35,10 +32,10 @@ builder() {
         p1=${n2[0]}
         p2=${n2[1]}
 
-        $_update "Copying $p1 to $p2"
+        echo -e "\e[0;32m[*]\e[0m Copying $p1 to $p2"
         [ -f $p2 ] && sudo rm $p2
         [ -d $p2 ] && sudo rm -r $p2
-        sudo cp -r $p1 $p2 || _err_exit
+        sudo cp -r $p1 $p2 || ${ sudo -k; exit 1; }
     done
 }
 
@@ -60,6 +57,26 @@ make_auto_pull(){
 
 # auto update build function
 make_auto_update(){
+    out=$_dir/cfg/update-nginx.job
+    
+    # Build the update-nginx.sh script
+    echo "nginx_conf=(${nginx_conf[*]})" >> $out
+    echo "sites_enabled=(${sites_enabled[*]})" >> $out
+    echo "sites_available=(${sites_available[*]})" >> $out
+    echo $(declare -f builder) >> $out
+    echo "builder nginx_conf sites_enabled sites_available" >> $out
+
+    # Test the script
+    $cfg/update-nginx.job
+
+    # If script is wrong, clear it and error out. Overwise move on
+    sudo nginx -t
+    [ $? -ne 0 ] && {  }
+
+    # Move it to /usr/local/bin/ so our cronjob can file it
+    [ -f $out ] && sudo mv $out /usr/local/bin/ || exit 1
+
+    # Set up the cron job to run update-nginx.sh once a day
     write_cronjob "@daily nginx -s reload" "root"
 }
 
@@ -74,32 +91,27 @@ yon(){
 }
 
 # Reset sudo authentication timestamp
-sudo -k
+#sudo -k
 
 # Prompt the user for sudo password
 sudo -v
 
 # Check if the user successfully entered their sudo password
-[ $? -ne 0 ] && { _err_exit "sudo"; }
-
-# Define where a each file is getting copied to
-nginx_conf=("$(pwd)/nginx/nginx.conf" "/etc/nginx/nginx.conf")
-sites_enabled=("$(pwd)/nginx/sites-enabled" "/etc/nginx/sites-enabled/")
-sites_available=("$(pwd)/nginx/sites-available" "/etc/nginx/sites-available/")
+[ $? -ne 0 ] && { _exit "sudo"; exit 1; }
 
 # Call builder on each file/folder
 builder nginx_conf sites_enabled sites_available
 
 # Check if nginx.conf is correct
-$_update "Checking nginx.conf..."
-sudo nginx -t 2>error.log
-[ $? -eq 0 ] && $_success "Built nginx successfully." || _err_exit "update"
+#$_update "Checking nginx.conf..."
+#sudo nginx -t 2>error.log
+#[ $? -eq 0 ] && $_success "Built nginx successfully." || { $_error "update"; exit 1; }
 
 # Set up cron job for auto git pull
-yon "Set up auto git pulls?" && make_auto_pull || _exit
+yon "Set up auto git pulls?" && make_auto_pull
 
 # Set up cron job for updating the website files
-yon "Set up auto update?" && make_auto_update || _exit
+yon "Set up auto update?" && make_auto_update
 
 # Reset sudo authentication timestamp
-sudo -k
+#sudo -k
