@@ -1,8 +1,6 @@
 #!/bin/bash
-
-# @file update-node.sh
-# @author Caleb Burke
-# @version 1.0
-# @date June 9, 2023
-#
 # DO NOT WRITE TO THIS FILE
+systemctl stop puffer
+[ -d /var/www ] && rm -r /var/www || exit 1
+cp -r /home/caleb/Projects/harbor/www /var/www
+systemctl start puffer

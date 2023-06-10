@@ -1,8 +1,3 @@
 #!/bin/bash
-
-# @file update-harbor.job
-# @author Caleb Burke
-# @version 1.0
-# @date June 9, 2023
-#
 # DO NOT WRITE TO THIS FILE
+git -C /home/caleb/Projects/harbor pull
