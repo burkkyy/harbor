@@ -22,6 +22,7 @@ const { marked } = require('marked');
 const create_dom_purifier = require('dompurify');
 const { JSDOM } = require('jsdom');
 
+// Defined routes start here
 router.get('/', (req, res) => {
     res.send('Library');
 });

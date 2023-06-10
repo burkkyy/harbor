@@ -25,6 +25,7 @@ const { JSDOM } = require('jsdom');
 // Create the markdown purifier
 const dom_purify = create_dom_purifier(new JSDOM().window);
 
+// Defined routes start here
 router.get('/', (req, res) => {
     res.send('Museum');
 });
