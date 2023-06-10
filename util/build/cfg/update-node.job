@@ -1,6 +1,2 @@
 #!/bin/bash
 # DO NOT WRITE TO THIS FILE
-systemctl stop puffer
-[ -d /var/www ] && rm -r /var/www || exit 1
-cp -r /home/caleb/Projects/harbor/www /var/www
-systemctl start puffer
