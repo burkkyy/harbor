@@ -28,6 +28,14 @@ case $error in
         $(dirname "$0")/info "Run 'npm run' for all build commands."
     ;;
 
+    "built")
+        _p "Already built!"
+    ;;
+
+    "notfound")
+        _p "File not found!"
+    ;;
+
     "path")
         _p "Do not manually run this script! See README for details"
     ;;

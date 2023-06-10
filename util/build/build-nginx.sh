@@ -2,8 +2,8 @@
 
 # @file build-nginx.sh
 # @author Caleb Burke
-# @version 1.1
-# @date June 7, 2023
+# @version 1.3
+# @date June 9, 2023
 #
 # DO NOT RUN this script from here. 
 # From the root of this project run 'npm run build-nginx'
@@ -52,13 +52,23 @@ write_cronjob(){
 
 # auto git pull build function
 make_auto_pull(){
-    write_cronjob "@daily git -C $(pwd) pull" $(whoami)
+    out=$_dir/cfg/update-harbor.job
+    [ ! -f $out ] && { $_info "Auto git pull was already built"; return; }
+    
+    # Build the cronjob
+    echo "git -C $(pwd) pull" >> $out
+
+    # Move it to /usr/local/bin/ so our cronjob can file it
+    sudo mv $out /usr/local/bin/
+
+    write_cronjob "@daily /usr/local/bin/update-harbor.job" "root";
 }
 
 # auto update build function
 make_auto_update(){
     out=$_dir/cfg/update-nginx.job
-    
+    [ ! -f $out ] && { $_info "Auto update nginx was already built"; return; }
+
     # Build the update-nginx.sh script
     echo "nginx_conf=(${nginx_conf[*]})" >> $out
     echo "sites_enabled=(${sites_enabled[*]})" >> $out
@@ -71,10 +81,13 @@ make_auto_update(){
 
     # If script is wrong, clear it and error out. Overwise move on
     sudo nginx -t
-    [ $? -ne 0 ] && {  }
+    [ $? -ne 0 ] && { exit 1; }
 
     # Move it to /usr/local/bin/ so our cronjob can file it
     [ -f $out ] && sudo mv $out /usr/local/bin/ || exit 1
+
+    # Write a cron job that will call it
+    write_cronjob "@daily /usr/local/bin/update-nginx.job" "root"
 
     # Set up the cron job to run update-nginx.sh once a day
     write_cronjob "@daily nginx -s reload" "root"
@@ -91,7 +104,7 @@ yon(){
 }
 
 # Reset sudo authentication timestamp
-#sudo -k
+sudo -k
 
 # Prompt the user for sudo password
 sudo -v
@@ -103,9 +116,9 @@ sudo -v
 builder nginx_conf sites_enabled sites_available
 
 # Check if nginx.conf is correct
-#$_update "Checking nginx.conf..."
-#sudo nginx -t 2>error.log
-#[ $? -eq 0 ] && $_success "Built nginx successfully." || { $_error "update"; exit 1; }
+$_update "Checking nginx.conf..."
+sudo nginx -t 2>error.log
+[ $? -eq 0 ] && $_success "Built nginx successfully." || { $_error "update"; exit 1; }
 
 # Set up cron job for auto git pull
 yon "Set up auto git pulls?" && make_auto_pull
@@ -114,4 +127,4 @@ yon "Set up auto git pulls?" && make_auto_pull
 yon "Set up auto update?" && make_auto_update
 
 # Reset sudo authentication timestamp
-#sudo -k
+sudo -k
