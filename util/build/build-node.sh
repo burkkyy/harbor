@@ -60,7 +60,7 @@ make_auto_update(){
     echo "cd $(pwd)/www && npm i" >> $job
     echo "[ \$? -ne 0 ] && { echo '\$(date) :: installing npm packages failed! Did not update website.' >> CRON_ERROR.log; exit 1; }" >> $job
     echo "[ -d /var/www ] && rm -r /var/www" >> $job
-    echo "\e[0;32m[*]\e[0m Copying $(pwd) to /var/www" >>$job
+    echo "echo \e[0;32m[*]\e[0m Copying $(pwd) to /var/www" >>$job
     echo "cp -r $(pwd)/www /var/www" >> $job
     echo "sleep 1" >> $job
     echo "systemctl start puffer" >> $job
