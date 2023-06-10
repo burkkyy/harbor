@@ -67,7 +67,10 @@ make_auto_update(){
     sudo mv $ser /etc/systemd/system/  
 
     # Build the cronjob
+    # TODO Make this is own cfg, conf or sh file
     echo "systemctl stop puffer" >> $job
+    echo "cd $(pwd)/www && npm i" >> $job
+    echo "[ \$? -ne 0 ] && { echo '\$(date) :: installing npm packages failed! Did not update website.' >> CRON_ERROR.log; exit 1; }" >> $job
     echo "[ -d /var/www ] && rm -r /var/www || exit 1" >> $job
     echo "cp -r $(pwd)/www /var/www" >> $job
     echo "sleep 1" >> $job
