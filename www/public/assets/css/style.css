@@ -10,6 +10,7 @@
     --sidebar-bg: #212325;
     --topbar-size: 3rem;
     --sidebar-size: 18rem;
+    --animation-time: 200ms;
 }
 
 * {
@@ -31,6 +32,12 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
     background: var(--bg-secondary);
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 h1 {

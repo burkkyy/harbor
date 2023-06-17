@@ -5,13 +5,11 @@ const sidebar_toggle = document.querySelector('.sidebar-toggle');
 
 function toggle(){
     sidebar.classList.toggle('show');
-    
+
     if(sidebar.classList.contains('show')){
         content.style.marginLeft = "var(--sidebar-size)";
-        topbar.style.marginLeft = "var(--sidebar-size)";
     } else {
         content.style.marginLeft = "0";
-        topbar.style.marginLeft = "0";
     }
 }
 

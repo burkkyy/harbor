@@ -1,9 +1,9 @@
 .content-wrapper {
     padding: 1rem;
+    transition: margin var(--animation-time) ease-in-out;
 }
 
 .content {
-    margin-top: var(--topbar-size);
     margin-left: 3rem;
 }
 
