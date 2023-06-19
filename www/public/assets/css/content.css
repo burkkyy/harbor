@@ -1,5 +1,6 @@
 .content-wrapper {
     padding: 1rem;
+    margin-left: var(--sidebar-size);
     transition: margin var(--animation-time) ease-in-out;
 }
 

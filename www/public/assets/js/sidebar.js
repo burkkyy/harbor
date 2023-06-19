@@ -14,7 +14,7 @@ function toggle(){
 }
 
 /* If the window is a big screen, we can show the sidebar */
-if (window.innerWidth > 600){
+if (window.innerWidth < 600){
     toggle();
 }
 
