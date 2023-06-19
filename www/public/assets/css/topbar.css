@@ -2,12 +2,14 @@
     display: flex;
     height: var(--topbar-size);
     width: 100%;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     justify-content: left;
     align-items: center;
     background-color: #27282b;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
 .topbar-item {

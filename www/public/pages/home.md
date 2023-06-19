@@ -20,4 +20,4 @@ Testing img:\
 ![Some image](/assets/img/duck.png)
 
 This should not exist:
-<p>hehehaha</p>
+<script src='/js/sidebar.js'>JS INJECTED WITH HTML</script>

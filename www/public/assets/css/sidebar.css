@@ -1,13 +1,14 @@
 .sidebar-wrapper {
-    display: none;  /* sidebar.js will handle the display */
-    width: var(--sidebar-size);
+    /*display: none; sidebar.js will handle the display */
+    width: 0;
     height: 100%;
     position: fixed;
     background-color: var(--sidebar-bg);
+    transition: width var(--animation-time) ease-in-out;
 }
 
 .sidebar-wrapper.show {
-    display: block;
+    width: var(--sidebar-size);
 }
 
 .sidebar {
@@ -19,6 +20,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    overflow-y: auto;
 }
 
 .sidebar .sidebar-item {
@@ -34,6 +36,8 @@
 .sidebar .sidebar-item:first-child {
     margin-top: var(--topbar-size);
     padding: 3rem 3rem 0 3rem;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .sidebar:first-child img {
@@ -44,11 +48,11 @@
 
 .sidebar .sidebar-item:first-child h1 {
     margin-top: 8%;
+    margin-bottom: 3%;
     color: var(--text-secondary);
 }
 
 .sidebar .sidebar-item:first-child p {
-    margin-top: 3%;
     color: #83838aa1;
     font-style: oblique;
 }
@@ -97,7 +101,7 @@
 */
 .sidebar .sidebar-item:last-child {
     margin-top: auto;
-    margin-bottom: 1rem;
+    margin-bottom: 4rem;
     flex-direction: row;
 }
 

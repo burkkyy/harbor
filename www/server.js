@@ -34,6 +34,10 @@ app.use('/', root_router);
 app.use('/museum', museum_router);
 app.use('/library', library_router);
 
+app.get('/api', (req, res) => {
+    res.send('hello');
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 });

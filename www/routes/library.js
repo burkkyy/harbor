@@ -6,25 +6,13 @@
  *
  * Routes defined for /library
  *
-*/ 
+*/
+
+const { render_page } = require('./util');
 
 const express = require('express');
+
 const router = express.Router();
-
-// Modules for handling files
-const path = require('path');
-const { readFile } = require('fs').promises;
-
-// Module for parsing markdown
-const { marked } = require('marked');
-
-// Modules for sanatizing markdown files, to prevent code injection
-const create_dom_purifier = require('dompurify');
-const { JSDOM } = require('jsdom');
-
-// Defined routes start here
-router.get('/', (req, res) => {
-    res.send('Library');
-});
+router.get('/', render_page('library.md'));
 
 module.exports = router;
