@@ -3,7 +3,7 @@
 /*
  * @file server.js
  * @author Caleb Burke
- * @version 1.0
+ * @version 1.1
  * @date June 4, 2023
  *
  * Entry point for my nodejs server
@@ -12,7 +12,6 @@
 
 // Import statements
 const express = require('express');
-const path = require('path');
 
 // Start the express app
 const app = express();
@@ -26,17 +25,15 @@ app.use(express.json());
 
 // Set up the routers
 const root_router = require('./routes/root');
+const auth_router = require('./routes/auth');
 const museum_router = require('./routes/museum');
 const library_router = require('./routes/library');
 
 // Add the routers to middleware
 app.use('/', root_router);
+// app.use('/auth', auth_router);
 app.use('/museum', museum_router);
 app.use('/library', library_router);
-
-app.get('/api', (req, res) => {
-    res.send('hello');
-});
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)

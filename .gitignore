@@ -1,3 +1,4 @@
 node_modules/
 requests.rest
 proxmox/
+.env

@@ -9,7 +9,6 @@
 */
 
 const { render_page } = require('./util');
-
 const express = require('express');
 
 const router = express.Router();
