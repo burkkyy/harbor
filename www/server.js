@@ -31,7 +31,7 @@ const library_router = require('./routes/library');
 
 // Add the routers to middleware
 app.use('/', root_router);
-// app.use('/auth', auth_router);
+app.use('/auth', auth_router);
 app.use('/museum', museum_router);
 app.use('/library', library_router);
 
