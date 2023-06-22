@@ -33,7 +33,7 @@ make_auto_pull(){
     [ ! -f $out ] && { $_info "Auto git pull was already built"; return; }
     
     # Build the cronjob
-    echo "git -C $(pwd) pull" >> $out
+    echo "git -C $(pwd) pull -f" >> $out
 
     # Move it to /usr/local/bin/ so our cronjob can file it
     sudo mv $out /usr/local/bin/
