@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="HTML, CSS. JavaScript">
+    <meta name="description" content="My Personal website.">
+    <meta name="author" content="Caleb Burke">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caleb Burke</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/content.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/login.css">
+</head>
+
+<body>
+    <div class="wrapper-login">
+        <form class="form-login" action="/login" method="POST">
+            <h1>Proxmox Login</h1>
+
+            <label for="username">Username</label>
+            <input type="text" id="username" class="<%= locals.input_error ? 'input-error' : '' %>" name="username" value="<%= locals.username || '' %>" required>
+
+            <label for="password">Password</label>
+            <input type="text" id="password" class="<%= locals.input_error ? 'input-error' : '' %>" name="password" required>
+
+            <button class="btn-login">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
