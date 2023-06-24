@@ -12,6 +12,7 @@ const { render_page } = require('./util');
 const express = require('express');
 
 const router = express.Router();
+
 router.get('/', render_page('library.md'));
 
 module.exports = router;
