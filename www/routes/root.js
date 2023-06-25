@@ -24,7 +24,7 @@ router.post('/login', async (req, res) => {
     try {
         const username = req.body.username;
         const password = req.body.password;
-
+        
         ticket = null;
         try {
             ticket = await get_ticket(username, password);
