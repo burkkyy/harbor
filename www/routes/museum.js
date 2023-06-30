@@ -8,11 +8,11 @@
  *
 */
 
-const { render_page } = require('./util');
+const { render_md } = require('../lib/helper');
 const express = require('express');
 
 const router = express.Router();
 
-router.get('/', render_page('museum.md'));
+router.get('/', render_md('museum'));
 
 module.exports = router;

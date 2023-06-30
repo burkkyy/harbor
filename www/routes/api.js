@@ -11,6 +11,7 @@
  * 
 */
 
+const auth = require('../lib/auth');
 const express = require('express');
 
 const router = express.Router();
@@ -19,12 +20,9 @@ router.get('/', (req, res) => { res.sendStatus(400); });
 
 router.post('/login', (req, res) => {
     try {
-        const username = encodeURIComponent(req.body.username);
-        const password = encodeURIComponent(req.body.password);
-        console.log(`username: ${username}\npassword: ${password}`);
-        res.status(200).send('OK');
+        res.sendStatus(200);
     } catch (e) {
-        res.status(500).send('An error has occered');
+        res.sendStatus(500);
     }
 });
 

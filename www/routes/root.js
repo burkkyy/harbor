@@ -9,14 +9,14 @@
 */
 
 const { get_ticket } = require('../lib/proxmox');
-const { render_page } = require('./util');
+const { render_md, render_html, render_template } = require('../lib/helper');
 const express = require('express');
 
 const router = express.Router();
 
-router.get('/', render_page('home.md'));
+router.get('/', render_html('home'));
 router.get('/home', (req, res) => { res.redirect('/'); });
-router.get('/about', render_page('about.md'));
+router.get('/about', render_md('about'));
 
 router.get('/login', async (req, res) => { res.render('login'); });
 
@@ -24,6 +24,18 @@ router.post('/login', async (req, res) => {
     try {
         const username = req.body.username;
         const password = req.body.password;
+        
+        // Auth user
+        const response = await fetch('http://localhost/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
         
         ticket = null;
         try {
@@ -42,8 +54,14 @@ router.post('/login', async (req, res) => {
         res.redirect(302, '/proxmox');
     } catch (e) {
         console.error(e);
-        res.redirect(302, '/auth/login');
+        res.redirect(302, '/login');
     }
+});
+
+router.get('/create_user', render_template('create-user'));
+
+router.post('/create_user', (req, res) => {
+    res.sendStatus(200);
 });
 
 module.exports = router;
