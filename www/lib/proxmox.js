@@ -1,34 +1,63 @@
 /*
  * @file proxmox.js
  * @author Caleb Burke
- * @version 1.0
- * @date June 24, 2023
+ * @version 1.2
+ * @date July 1, 2023
  *
  * Functions for interfacing with the proxmox api
  * 
 */
 
-async function get_ticket(username, password) {
+require('dotenv').config();
+
+const URL = 'https://calebburke.dev/proxmox/api2/json/';
+
+function create_user(username, password){
+    const user = {
+        userid: `${username}@pve`,
+        comment: 'User created with api',
+        password: password,
+        email: '',
+        enable: 1
+    };
+    
+    console.log('Creating proxmox user:', user);
+    
+    fetch(URL + 'access/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `PVEAPIToken=harbor@pve!${process.env.API_ID}=${process.env.API_KEY}`,
+        },
+        body: JSON.stringify(user)
+    }).then((res) => { return res.ok; });
+}
+
+/*
+ * Creates a new pool and custom storage for a certain user
+ */
+function create_user_env(username, password){
+
+}
+
+function get_ticket(username, password) {
     console.log(`username: ${username}\npassword: ${password}`);
     console.log('Getting proxmox access token...');
 
     // Fetch the proxmox access token
-    const proxmox_response = await fetch('https://calebburke.dev/proxmox/api2/json/access/ticket', {
+    fetch(URL + 'access/ticket', {
         method: "POST",
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: `username=${encodeURIComponent(username)}@pam&password=${encodeURIComponent(password)}`
+    }).then(async (res) => {
+        if (!response.ok) { throw response.status; }
+        return (await response.json()).data;
+    }).catch((e) => {
+        console.error(e);
+        return null;
     });
-
-    // Check if fetch succeeded, and the ticket is valid
-    if (!proxmox_response.ok) { throw proxmox_response.status; }
-
-    const ticket_json = await proxmox_response.json();
-
-    if (ticket_json.data == null) { throw 500; }
-
-    return ticket_json.data.ticket;
 }
 
-module.exports = { get_ticket };
+module.exports = { create_user, get_ticket };

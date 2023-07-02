@@ -45,9 +45,10 @@
     text-decoration: none;
     background-color: rgba(72, 255, 0, 0.5);
     border: none;
-    border-radius: 10%;
+    border-radius: 8%;
     width: fit-content;
     padding: 4px;
+    margin: 4px;
 }
 
 .btn-login:hover {

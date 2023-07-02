@@ -18,12 +18,12 @@ const bcrypt = require('bcrypt');
 const base85 = require('base85');
 
 async function create_user(username, password) {
-    if(username == null || password == null){
+    if (username == null || password == null) {
         throw new Error('Null username or password');
     }
 
     // Generate a random secure password for the new proxmox user
-    const proxmox_pwd = base85.encode(randomBytes(128));
+    const proxmox_pwd = base85.encode(randomBytes(52)).slice(0, 64);
 
     // Hash the password to get the key
     const key = createHash('sha256').update(password).digest('hex');
@@ -47,11 +47,12 @@ async function create_user(username, password) {
     return user;
 }
 
-async function auth_user(user, password){
+async function auth_user(user, password) {
+    console.log(user, password)
     // Get the key from the user
     const key = createHash('sha256').update(password).digest();
 
-    if (! await bcrypt.compare(key.toString('hex'), user.key)) {
+    if (!await bcrypt.compare(key.toString('hex'), user.key)) {
         console.log('Invalid password');
         return false;
     }
