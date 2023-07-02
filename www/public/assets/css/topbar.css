@@ -12,17 +12,18 @@
     z-index: 1;
 }
 
-.topbar-item {
-    padding-left: 2rem;
-}
-
 .topbar-item:first-child {
     cursor: pointer;
     padding-left: 1rem;
 }
 
-.topbar a {
+.topbar-item:last-child {
+    margin-left: auto;
+}
+
+.topbar .topbar-link {
     text-decoration: none;
+    padding-left: 2rem;
     color: var(--header-primary);
 }
 
