@@ -12,7 +12,23 @@ require('dotenv').config();
 
 const URL = 'https://calebburke.dev/proxmox/api2/json/';
 
-function create_user(username, password){
+function call(uri, body) {
+    fetch(URL + uri, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `PVEAPIToken=harbor@pve!${process.env.API_ID}=${process.env.API_KEY}`,
+        },
+        body: JSON.stringify(body)
+    })
+        .then((res) => { return res.ok; })
+        .catch((e) => {
+            console.error(e);
+            return false;
+        });
+}
+
+function create_user(username, password) {
     const user = {
         userid: `${username}@pve`,
         comment: 'User created with api',
@@ -20,9 +36,9 @@ function create_user(username, password){
         email: '',
         enable: 1
     };
-    
+
     console.log('Creating proxmox user:', user);
-    
+
     fetch(URL + 'access/users', {
         method: 'POST',
         headers: {
@@ -36,8 +52,16 @@ function create_user(username, password){
 /*
  * Creates a new pool and custom storage for a certain user
  */
-function create_user_env(username, password){
+function create_user_env(username, password) {
+    // Create storage for user
+    const storage = {
+        storage: username,
+        type: 'dir',
+        path: `/var/lib/vz-${username}`,
+        content: 'images',
+    };
 
+    return call('storage', storage);
 }
 
 function get_ticket(username, password) {
