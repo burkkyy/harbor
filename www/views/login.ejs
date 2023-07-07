@@ -21,13 +21,16 @@
 
             <label for="username">Username</label>
             <input type="text" id="username" class="<%= locals.input_error ? 'input-error' : '' %>" name="username"
-                value="<%= locals.username || '' %>" required>
+                value="<%= locals.username || '' %>" placeholder="Type username here" required>
 
             <label for="password">Password</label>
-            <input type="text" id="password" class="<%= locals.input_error ? 'input-error' : '' %>" name="password"
-                required>
-
-            <button class="btn-login">Submit</button>
+            <input type="password" id="password" class="<%= locals.input_error ? 'input-error' : '' %>" name="password"
+                placeholder="Type password here" required>
+            
+            <div>
+                <a class="btn-goback" href="/home">Go Back To Home</a>
+                <button class="btn-login">Submit</button>
+            </div>
         </form>
     </div>
 </body>

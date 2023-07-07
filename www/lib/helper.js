@@ -17,6 +17,13 @@ const { JSDOM } = require('jsdom');
 // Enviroment variables
 const PATH = '../public/'; // All files that go to client must be from public
 
+/**
+ * Renders html file in a blank html
+ * @param {string} filename 
+ * @returns 
+ * @note Middleware
+ * @note CSS styles are provided
+ */
 function render_template(filename){
     return async (req, res, next) => {
         try { 
@@ -36,6 +43,12 @@ function render_template(filename){
     }
 }
 
+/**
+ * Renders html file under a layout
+ * @param {string} filename 
+ * @returns 
+ * @note Middleware
+ */
 function render_html(filename){
     return async (req, res, next) => {
         try {
@@ -55,6 +68,12 @@ function render_html(filename){
     }
 }
 
+/**
+ * Renders markdown file as html file
+ * @param {string} filename
+ * @returns
+ * @note Middleware 
+ */
 function render_md(filename) {
     const dom_purify = create_dom_purifier(new JSDOM().window);
     return async (req, res, next) => {
@@ -79,4 +98,8 @@ function render_md(filename) {
     }
 }
 
-module.exports = { render_template, render_html, render_md }
+module.exports = {
+    render_template,
+    render_html,
+    render_md
+}
