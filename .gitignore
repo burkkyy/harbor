@@ -1,7 +1,10 @@
-# Folders
+# Dependencies
 node_modules/
-test/
 
-# Files
+# Dev files and folders
 .env
+test/
 requests.rest
+
+# Temp and log files
+logs/

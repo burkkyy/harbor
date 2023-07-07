@@ -19,14 +19,20 @@
         <form class="form-login" action="/create_user" method="POST">
             <h1>Create User</h1>
 
+            <label for="create_user_key">Create User Key</label>
+            <input type="text" id="create_user_key" name="create_user_key" placeholder="Paste key here">
+
             <label for="username">Username</label>
-            <input type="text" id="username" class="<%= locals.input_error ? 'input-error' : '' %>" name="username" value="<%= locals.username || '' %>" required>
+            <input type="text" id="username" class="<%= locals.input_error ? 'input-error' : '' %>" name="username"
+                value="<%= locals.username %>" placeholder="Type username here" required>
 
             <label for="password">Password</label>
-            <input type="text" id="password" class="<%= locals.input_error ? 'input-error' : '' %>" name="password" value="<%= locals.password || '' %>" required>
+            <input type="password" id="password" class="<%= locals.input_error ? 'input-error' : '' %>" name="password"
+                placeholder="Type password here" required>
 
             <label for="retype-password">Retype password</label>
-            <input type="text" id="retype-password" class="<%= locals.input_error ? 'input-error' : '' %>" name="retype-password" required>
+            <input type="password" id="retype-password" class="<%= locals.input_error ? 'input-error' : '' %>"
+                name="retype-password" placeholder="Retype password here" required>
 
             <button class="btn-login">Submit</button>
         </form>

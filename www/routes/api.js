@@ -11,8 +11,9 @@
  * 
 */
 
+const harbor = require('../lib/core');
+const log = require('../lib/log');
 const db = require('../lib/db');
-const auth = require('../lib/auth');
 const express = require('express');
 
 const router = express.Router();
@@ -23,34 +24,66 @@ router.post('/user/login', async (req, res) => {
     try {
         const username = req.body.username;
         const password = req.body.password;
-
-        let user = await db.get_user(username);
-        if (user == null) {
-            res.sendStatus(400);
-            return;
-        }
-
-        let access = await auth.auth_user(user, password);
-        if (!access) {
-            res.sendStatus(403);
-            return;
-        }
-        
-        res.status(200).send({
-            proxmox_key: 'a',
-        });
+        const user = await harbor.auth_user(username, password);
+        if (!user) { return res.sendStatus(400); }
+        res.sendStatus(200);
     } catch (e) {
+        log.error(e);
         res.sendStatus(500);
     }
 });
 
 router.post('/user/create', async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    if(username == null || password == null){ return res.sendStatus(400); }
+    try {
+        const username = req.body.username;
+        const password = req.body.password;
+        const create_user_key = req.body.create_user_key;
+        const CREATE_USER_KEY = await db.get_env('CREATE_USER_KEY');
+        
+        if (!username || !password || !create_user_key || !CREATE_USER_KEY) {
+            return res.sendStatus(400);
+        }
 
-    const user = await auth.create_user(username, password);
-    res.status(200).send(user);
+        if (!(await bcrypt.compare(create_user_key, CREATE_USER_KEY))) {
+            let input_error = true;
+            return res.render('create_user', {
+                username: username,
+                password: password,
+                input_error
+            });
+        }
+
+        const user = await harbor.create_user(username, password);
+        if (!user) {
+            log.error('Error while creating user');
+            return res.sendStatus(500);
+        }
+        res.sendStatus(200);
+    } catch (e) {
+        log.error(e);
+        res.sendStatus(500);
+    }
+});
+
+router.post('/proxmox/login', async (req, res) => {
+    try {
+        const username = req.body.username;
+        const password = req.body.password;
+        const data = await harbor.proxmox_login(username, password);
+
+        if (data === null) {
+            log.warning(`login from user '${username}' failed`);
+            res.sendStatus(400);
+        } else {
+            res.status(200).send({
+                ticket: data.ticket,
+                CSRFPreventionToken: data.CSRFPreventionToken,
+            });
+        }
+    } catch (e) {
+        log.error(e);
+        res.sendStatus(500);
+    }
 });
 
 module.exports = router;

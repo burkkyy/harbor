@@ -1,26 +1,30 @@
 /*
  * @file db.js
  * @author Caleb Burke
- * @version 1.1
- * @date June 30, 2023
+ * @version 1.3
+ * @date July 6, 2023
  *
- * Functions for interfacing with the mongodb database
+ * Functions for interfacing with the mongodb database.
  * 
+ * NOTE: Change 'uri' to the address of the mongodb server. This address
+ *       will probably not work for you
 */
 
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' }); // ONLY USE IN DEV!
 
-const bcrypt = require('bcrypt');
-const base85 = require('base85');
-const { randomBytes, createHash, createCipheriv, createDecipheriv } = require('crypto');
 const { MongoClient, MongoError } = require('mongodb');
+const log = require('./log');
 
 const uri = 'mongodb://192.168.1.222';
+const dbs = 'harbor'
 const client = new MongoClient(uri);
 
-/*
- * This function is only here for dev.
- * TODO remove this function, as it is a security risk
+/**
+ * Gets all users
+ * @async
+ * @returns users on mongodb
+ * @todo remove this function, as it is a security risk
+ * @note This function is only here for dev.
  */
 async function users() {
     try {
@@ -33,13 +37,21 @@ async function users() {
 
         // Get all the users and return them
         const users = await collection.find({}).toArray();
+
+        await client.close();
         return users;
     } catch (e) {
-        console.error(e);
-        return null;
+        log.error(e);
     }
+    return null;
 }
 
+/**
+ * Gets user off database
+ * @async
+ * @param {string} username 
+ * @returns {object} user json
+ */
 async function get_user(username) {
     try {
         // Connect to database
@@ -51,13 +63,21 @@ async function get_user(username) {
 
         // Get the user with the username
         const user = await collection.findOne({ username: username });
+
+        await client.close();
         return user;
     } catch (e) {
-        console.error(e);
-        return null;
+        log.error(e);
     }
+    return null;
 }
 
+/**
+ * Adds user to database
+ * @async
+ * @param {object} user - User json
+ * @returns {boolean} if user was added to database
+ */
 async function add_user(user) {
     try {
         // Store the hased key, and the encrypted proxmox password
@@ -69,13 +89,21 @@ async function add_user(user) {
 
         // Insert the user to database
         await collection.insertOne(user);
+
+        await client.close();
         return true;
     } catch (e) {
-        console.error(e);
-        return false;
+        log.error(e);
     }
+    return false;
 }
 
+/**
+ * Removes user off database
+ * @async
+ * @param {string} username 
+ * @returns {boolean} if user was removed
+ */
 async function remove_user(username) {
     try {
         // Connect to database
@@ -87,11 +115,42 @@ async function remove_user(username) {
 
         // Remove the user with the username
         await collection.deleteOne({ username: username });
+
+        await client.close();
         return true;
     } catch (e) {
-        console.error(e);
-        return false;
+        log.error(e);
     }
+    return false;
 }
 
-module.exports = { add_user, get_user };
+/**
+ * Gets env variable off database
+ * @async
+ * @param {string} id The id of the env var you want
+ * @returns {string} The value of the env var
+ * @note Returns null on any errors
+ */
+async function get_env(id) {
+    if(!id){ return null; }
+    try {
+        await client.connect();
+        
+        const env_var = await client.db(dbs).collection('env').findOne({
+            id: id,
+        });
+
+        await client.close();
+        return env_var.value;
+    } catch (e) {
+        log.error(e);
+    }
+    return null;
+}
+
+module.exports = {
+    get_user,
+    add_user,
+    remove_user,
+    get_env,
+};
