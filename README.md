@@ -7,6 +7,7 @@ Visit at these Domains:
 
 ### TODO
 * Create login timeout
+* Implement CSRF tokens
 * Create docker templates for nginx, nodejs, and mongodb servers
 
 ## Resources
