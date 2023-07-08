@@ -12,3 +12,6 @@ Visit at these Domains:
 
 ## Resources
 [1] https://gist.github.com/HikariKnight/0c026d33d56cc8c56ab418cf8af0bfb0
+[2] https://github.com/benweet/stackedit
+[3] https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/
+[4] https://github.com/PrismJS/prism-themes

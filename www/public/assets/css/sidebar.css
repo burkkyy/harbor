@@ -1,5 +1,5 @@
 .sidebar-wrapper {
-    /*display: none; sidebar.js will handle the display */
+    /* display: none; sidebar.js will handle the display */
     width: 0;
     height: 100%;
     position: fixed;
@@ -42,6 +42,7 @@
 
 .sidebar:first-child img {
     width: 6rem;
+    height: 6rem;
     border-radius: 50%;
     border: 2px solid #dedede41;
 }

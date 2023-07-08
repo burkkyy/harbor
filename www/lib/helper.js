@@ -26,8 +26,8 @@ const PATH = '../public/'; // All files that go to client must be from public
  */
 function render_template(filename){
     return async (req, res, next) => {
-        try { 
-            let subdir = 'html/'
+        try {
+            let subdir = 'html/';
             let prefix = '.html';
 
             let _html = await readFile(

@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/topbar.css">
     <link rel="stylesheet" type="text/css" href="assets/css/sidebar.css">
     <link rel="stylesheet" type="text/css" href="assets/css/content.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/article.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/prism-vsc-dark-plus.css">
 </head>
 
 <body>
@@ -102,13 +104,14 @@
             </div>
         </div>
         <div class="content-wrapper">
-            <div class="content">
+            <div class="content article">
                 <%- locals.content || '<h1>Error loading content</h1>' %>
             </div>
         </div>
     </div>
     <script type="text/javascript" src="assets/js/sidebar.js"></script>
     <script type="text/javascript" src="assets/js/topbar.js"></script>
+    <script type="text/javascript" src="assets/js/prism.js"></script>
 </body>
 
 </html>
