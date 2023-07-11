@@ -10,6 +10,9 @@
  *
 */
 
+// Aliases
+require('module-alias/register');
+
 // Import statements
 const express = require('express');
 
@@ -28,12 +31,14 @@ const root_router = require('./routes/root');
 const api_router = require('./routes/api');
 const museum_router = require('./routes/museum');
 const library_router = require('./routes/library');
+const article_router = require('./routes/articles');
 
 // Add the routers to middleware
 app.use('/', root_router);
 app.use('/api', api_router);
 app.use('/museum', museum_router);
 app.use('/library', library_router);
+app.use('/articles', article_router);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)

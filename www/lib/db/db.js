@@ -12,12 +12,37 @@
 
 require('dotenv').config({ path: '../.env' }); // ONLY USE IN DEV!
 
-const { MongoClient, MongoError } = require('mongodb');
-const log = require('./log');
+const mongoose = require('mongoose');
+const Article = require('./models/article');
+const User = require('./models/user');
+
+const { MongoClient } = require('mongodb');
+const log = require('../log');
 
 const uri = 'mongodb://192.168.1.222';
 const dbs = 'harbor'
 const client = new MongoClient(uri);
+
+mongoose.connect(uri + '/harbor');
+
+async function test(){
+    const article = await Article.create({
+        title: 'Test',
+        authors: ['jack sparrow', 'Caleb'],
+        description: 'A test'
+    });
+
+    const user = await User.create({
+        username: 'Caleb',
+        auth: {
+            key: 'key 1',
+            iv: 'iv 1',
+            proxmox_key: 'proxmox key 1',
+        },
+    });
+
+    return user
+}
 
 /**
  * Gets all users
@@ -153,4 +178,5 @@ module.exports = {
     add_user,
     remove_user,
     get_env,
+    test
 };

@@ -13,7 +13,7 @@
 
 const harbor = require('../lib/core');
 const log = require('../lib/log');
-const db = require('../lib/db');
+const db = require('@db');
 const express = require('express');
 
 const router = express.Router();

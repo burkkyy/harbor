@@ -11,7 +11,7 @@
 require('dotenv').config({ path: '../.env' }); // ONLY USE IN DEV!
 
 const log = require('./log');
-const db = require('./db');
+const db = require('./db/db');
 
 const URL = 'https://calebburke.dev/proxmox/api2/json/';
 const comment = 'Created from harbor through proxmox api';

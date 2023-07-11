@@ -1,52 +1,90 @@
-# Using Proxmox's API
+# Intro to Mongoose
 
-NOTE: For all these sections, in your POST req set the header
-`Authorization` with the value `PVEAPIToken=USER@REALM!TOKENID=UUID`.
+**Mongoose** is a library for modeling data for **Mongodb**. Using 
+**Mongodb** on its own is fine, but its extreme flexibility makes the 
+structureand layout of data inconsistant. **Mongoose** is essentially a 
+wrapper for **Mongodb**, that uses *schemas* and *models* for 
+structuring data to be saved on the database.
 
->The token id is the id of the API token created in proxmox, and the UUID 
->is the secret key associated with that token id.
+> Run `npm i mongoose` to install mongoose
 
-See [proxmox api](https://pve.proxmox.com/wiki/Proxmox_VE_API) for more info
-and the [api viewer](https://pve.proxmox.com/pve-docs/api-viewer/) for full documentation of the proxmox api.
+## What is a *schema*?
+A *schema* is the structure of data going to a Mongodb collection. In a
+*schema* we define the fields that will be in the Mongodb collection
+with its data type.
 
-## Creating a user
-1. Create a json called *user* that defines the user:
-```json
-    {
-        "userid": "<username>@pve",
-        "password": "<password>",
-        "enable": 1,
-        "comment": "<some comment>",
-    }
+Example:
+```javascript
+// Import mongoose module
+const mongoose = require('mongoose');
+
+// Create a schema for a user
+const user = new mongoose.Schema({
+    name: String,
+    password: String,
+    age: Number
+});
 ```
-2. Send *user* as a string in the body of a POST req to access/users
+> `String` and `Number` are the allowed types for that field. See [mongoose types](https://mongoosejs.com/docs/schematypes.html#strings) to see all of the allowed types in mongoose.
 
-## Creating a storage
-1. Create a json called *storage* that defines the storage:
-```json
-    {
-        "storage": "<name of storage>",
-        "type": "dir",
-        "path": "/var/lib/vz-<name>", // This is on the proxmox node
-        "content": "images,<more content types>",
-    }
-```
-2. Send *storage* as a string in the body of a POST req to storage/ 
+## What is a *model*?
+A *model* uses a *schema* to make / update / delete documents on the 
+database. A *model* is a wrapper around *schemas*. The *schema* is the 
+structure of documents, and the *model* is used to create a document 
+based on that *schema*.
 
-## Creating a pool
-1. Create a json called *pool* that defines the pool
-```json
-    {
-        "poolid": "<name of pool>",
-        "comment": "<some comment>",
-    }
+Example:
+```javascript
+// Creating a model for new users
+const user_model = mongoose.model('User', user_schema);
 ```
-Some java code
-```java
-public class Main {
-  static void myMethod() {
-    // code to be executed
-  }
-}
+
+## Putting something on a database
+Using schemas and models we can put stuff onto a database.
+
+Example:
+```javascript
+const mongoose = require('mongoose');
+
+mongoose.connect("mongodb://<your server>/<some database>");
+
+const user_schema = new mongoose.Schema({
+    name: String,
+    password: String,
+    age: Number
+});
+
+// Create user model from the schema
+const user_model = new mongoose.model("User", user_schema);
+
+// Create a new 'user'
+const user = new user_model({
+    name: "Alice",
+    password: "drowssap",
+    age: 21
+});
+
+await user.save(); // To put the user on the database
 ```
-2. Send *pool* as a string in the body of a POST req to pool/
+
+## Finding and changing data
+Finding something off a database with mongoose is essentially the same
+as **Mongodb** queries. For example, lets say you created a user 
+using the `user_model` from the example above and you set the `name` to
+"Bob". To find the `user` with the `name` "Bob":
+
+```javascript
+// Using Mongodb queries
+const user1 = await user_model.findOne({ name: 'Bob' });
+
+// Using Mongoose's style of querying
+const user2 = await user_model.where('name').equals('Bob');
+```
+
+# How mongoose is used in my website
+I have blogs like this one that I want to effectively store on a 
+database so I use mongoose.
+
+## Blog *schema*
+```javascript
+```
