@@ -23,8 +23,11 @@
 
 .topbar .topbar-link {
     text-decoration: none;
-    padding-left: 2rem;
     color: var(--header-primary);
+}
+
+.topbar .topbar-link:hover {
+    text-decoration: underline;
 }
 
 .topbar svg {

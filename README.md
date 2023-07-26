@@ -9,6 +9,7 @@ Visit at these Domains:
 * Create login timeout
 * Implement CSRF tokens
 * Create docker templates for nginx, nodejs, and mongodb servers
+* Migrate codebase to nextjs. Api backend will remain as expressjs
 
 ## Resources
 [1] https://gist.github.com/HikariKnight/0c026d33d56cc8c56ab418cf8af0bfb0 \

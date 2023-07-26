@@ -14,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/topbar.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/sidebar.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/content.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/article.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/prism-vsc-dark-plus.css">
     <% if (locals.styles && locals.styles.length > 0) { %>
         <% locals.styles.forEach(filename => { %>
             <link rel="stylesheet" type="text/css" href="/assets/css/<%= filename %>">
@@ -44,7 +46,7 @@
         <div class="sidebar-wrapper show">
             <div class="sidebar">
                 <div class="sidebar-item">
-                    <img src="assets/img/profile.png" alt="profile">
+                    <img src="/assets/img/profile.png" alt="profile">
                     <h1><b>Caleb Burke</b></h1>
                     <p>Future Cyber Security Expert and</p>
                     <p>Low Level Developer</p>
@@ -117,13 +119,14 @@
             </div>
         </div>
         <div class="content-wrapper">
-            <div class="content">
+            <div class="content article">
                 <%- locals.content || '<h1>Error loading content</h1>' %>
             </div>
         </div>
     </div>
     <script type="text/javascript" src="/assets/js/sidebar.js"></script>
     <script type="text/javascript" src="/assets/js/topbar.js"></script>
+    <script type="text/javascript" src="/assets/js/prism.js"></script>
     <% if (locals.scripts && locals.scripts.length > 0) { %>
         <% locals.scripts.forEach(filename => { %>
             <script type="text/javascript" src="/assets/js/<%= filename %>"></script>

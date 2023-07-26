@@ -89,7 +89,7 @@ function render_md(filename) {
                 marked.parse(_md, { mangle: false, headerIds: false })
             );
 
-            res.render('layout', { content: _html });
+            res.render('markdown_layout', { content: _html });
             next();
         } catch (err) {
             console.log(err);

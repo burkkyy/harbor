@@ -22,6 +22,23 @@
 </head>
 
 <body>
+    <script>
+        var dirs = [];
+        var files = [];
+    </script>
+    <!--
+        The most hacky code ive probably ever written
+        For some reason ejs expressions error when written
+        inside of a script tag. Im too tired to research why.
+
+        TODO: research why
+    -->
+    <% locals.dirs.forEach(d => { %>
+        <script>dirs.push("<%= d %>");</script>
+    <% }) %>
+    <% locals.files.forEach(d => { %>
+        <script>files.push("<%= d %>");</script>
+    <% }) %>
     <div class="topbar">
         <div class="topbar-item sidebar-toggle">
             <svg xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +61,7 @@
         <div class="sidebar-wrapper show">
             <div class="sidebar">
                 <div class="sidebar-item">
-                    <img src="assets/img/profile.png" alt="profile">
+                    <img src="/assets/img/profile.png" alt="profile">
                     <h1><b>Caleb Burke</b></h1>
                     <p>Future Cyber Security Expert and</p>
                     <p>Low Level Developer</p>
