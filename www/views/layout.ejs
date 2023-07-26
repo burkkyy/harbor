@@ -8,14 +8,17 @@
     <meta name="author" content="Caleb Burke">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caleb Burke</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/harbor.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/topbar.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/sidebar.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/content.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/article.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/prism-vsc-dark-plus.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/harbor.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/topbar.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/content.css">
+    <% if (locals.styles && locals.styles.length > 0) { %>
+        <% locals.styles.forEach(filename => { %>
+            <link rel="stylesheet" type="text/css" href="/assets/css/<%= filename %>">
+        <% }); %>
+    <% } %>
 </head>
 
 <body>
@@ -48,15 +51,16 @@
                 </div>
                 <div class="sidebar-item">
                     <div class="sidebar-sections">
-                        <a class="sections-link" href="museum">
+                        <!--
+                        <a class="sections-link" href="/museum">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                viewBox="0 0 512 512">
                                 <path
                                     d="M243.4 2.6l-224 96c-14 6-21.8 21-18.7 35.8S16.8 160 32 160v8c0 13.3 10.7 24 24 24H456c13.3 0 24-10.7 24-24v-8c15.2 0 28.3-10.7 31.3-25.6s-4.8-29.9-18.7-35.8l-224-96c-8-3.4-17.2-3.4-25.2 0zM128 224H64V420.3c-.6 .3-1.2 .7-1.8 1.1l-48 32c-11.7 7.8-17 22.4-12.9 35.9S17.9 512 32 512H480c14.1 0 26.5-9.2 30.6-22.7s-1.1-28.1-12.9-35.9l-48-32c-.6-.4-1.2-.7-1.8-1.1V224H384V416H344V224H280V416H232V224H168V416H128V224zM256 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
                             </svg>
                             <span>Museum</span>
                         </a>
-                        <a class="sections-link" href="library">
+                        <a class="sections-link" href="/library">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-book-half" viewBox="0 0 16 16">
                                 <path
@@ -64,7 +68,16 @@
                             </svg>
                             <span>Library</span>
                         </a>
-                        <a class="sections-link" href="about">
+                        -->
+                        <a class="sections-link" href="/articles">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M96 96c0-35.3 28.7-64 64-64H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H80c-44.2 0-80-35.8-80-80V128c0-17.7 14.3-32 32-32s32 14.3 32 32V400c0 8.8 7.2 16 16 16s16-7.2 16-16V96zm64 24v80c0 13.3 10.7 24 24 24H296c13.3 0 24-10.7 24-24V120c0-13.3-10.7-24-24-24H184c-13.3 0-24 10.7-24 24zm208-8c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16h48c8.8 0 16-7.2 16-16s-7.2-16-16-16H384c-8.8 0-16 7.2-16 16zM160 304c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16zm0 96c0 8.8 7.2 16 16 16H432c8.8 0 16-7.2 16-16s-7.2-16-16-16H176c-8.8 0-16 7.2-16 16z" />
+                            </svg>
+                            <span>Articles</span>
+                        </a>
+                        <a class="sections-link" href="/about">
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16"
                                 viewBox="0 0 50 50">
                                 <path
@@ -104,14 +117,18 @@
             </div>
         </div>
         <div class="content-wrapper">
-            <div class="content article">
+            <div class="content">
                 <%- locals.content || '<h1>Error loading content</h1>' %>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="assets/js/sidebar.js"></script>
-    <script type="text/javascript" src="assets/js/topbar.js"></script>
-    <script type="text/javascript" src="assets/js/prism.js"></script>
+    <script type="text/javascript" src="/assets/js/sidebar.js"></script>
+    <script type="text/javascript" src="/assets/js/topbar.js"></script>
+    <% if (locals.scripts && locals.scripts.length > 0) { %>
+        <% locals.scripts.forEach(filename => { %>
+            <script type="text/javascript" src="/assets/js/<%= filename %>"></script>
+        <% }); %>
+    <% } %>
 </body>
 
 </html>

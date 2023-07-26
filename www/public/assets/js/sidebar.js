@@ -47,7 +47,6 @@ if(!sidebar_on){
         sessionStorage.setItem('sidebar', false);
     }
 } else {
-    console.log('Sidebar exists');
     let sb = JSON.parse(sidebar_on);
     sb ? set_on() : set_off();
 }

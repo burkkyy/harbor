@@ -13,7 +13,7 @@ const base85 = require('base85');
 const proxmox = require('./proxmox');
 const auth = require('./auth');
 const log = require('./log');
-const db = require('./db');
+const db = require('@db');
 
 /**
  * Creates user on proxmox and database

@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --header-primary: #868585;
+  --header-secondary: #afb0b1;
+  --text-primary: #afb0b1;
+  --text-secondary: #868585;
+  --bg-primary: #1b1b1e;
+  --bg-secondary: #212325;
+}
+
+body {
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
