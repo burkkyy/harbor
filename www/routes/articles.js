@@ -42,7 +42,6 @@ router.get('/', async (req, res) => {
 router.get(/\.md$/, async (req, res) => {
     let filename = decodeURIComponent(req.path);
     let path = __dirname + '//../articles' + filename;
-    console.log(path);
 
     fs.readFile(path, 'utf-8').then((data) => {
         let text = marked.parse(data, { mangle: false, headerIds: false });
