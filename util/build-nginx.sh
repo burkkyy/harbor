@@ -35,7 +35,7 @@ builder() {
         echo -e "\e[0;32m[*]\e[0m Copying $p1 to $p2"
         [ -f $p2 ] && sudo rm $p2
         [ -d $p2 ] && sudo rm -r $p2
-        sudo cp -r $p1 $p2 || ${ sudo -k; exit 1; }
+        sudo cp -r $p1 $p2 || ${sudo -k; exit 1;}
     done
 }
 
