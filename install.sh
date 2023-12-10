@@ -41,11 +41,8 @@ fi
 which nginx
 [ $? -ne 0 ] && yes | apt install nginx
 
-# Copy my config onto system
-cp nginx /etc/nginx/
-
-# Copy websites onto system
-cp sites /var/
+cp -r nginx/* /etc/nginx/
+cp -r sites /var/
 
 # Start nginx
 systemctl enable nginx
