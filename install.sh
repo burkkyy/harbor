@@ -29,9 +29,13 @@ yon(){
 	esac
 }
 
-# Ensures root priv
-sudo -kv
-[ $? -ne 0 ] && { error "Please run as root"; exit 1; }
+# Ensure root
+if [[ ${id -u} -ne 0 ]]; then
+	which sudo
+	[ $? -ne 0 ] && { error "Please run as root"; exit 1; }
+	sudo -kv
+	[ $? -ne 0 ] && { error "Please run as root"; exit 1; }
+fi
 
 # Install nginx
 which nginx
@@ -48,5 +52,6 @@ systemctl enable nginx
 systemctl start nginx
 
 # Reset sudo auth timestamp
-sudo -k
+which sudo
+[ $? -eq 0 ] && sudo -k
 
