@@ -46,9 +46,9 @@ yon "Install nginx config?" && {
 	cp -r sites /var/
 
 	update "Starting up nginx daemon..."
-	systemctl enable nginx
-	systemctl start nginx
-	systemctl status nginx
+	systemctl enable nginx 1>/dev/null
+	systemctl start nginx 1>/dev/null
+	systemctl status nginx 1>/dev/null
 	[ $? -ne 0 ] && { error "Failed to start up nginx daemon!"; exit 1; }
 	success "Successfully started up nginx daemon!"
 }
@@ -69,9 +69,9 @@ yon "Install websites and their dependencies?" && {
 	for website in /var/sites/*; do
 		update "Starting up $website..."
 		w="$(basename $website)"
-		systemctl enable $w
-		systemctl start $w
-		systemctl status $w
+		systemctl enable $w 1>/dev/null
+		systemctl start $w 1>/dev/null
+		systemctl status $w 1>/dev/null
 		[ $? -ne 0 ] && { error "Failed to start up $website"; exit 1; }
 		success "Started up $website!"
 	done
