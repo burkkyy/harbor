@@ -55,8 +55,8 @@ yon "Install nginx config?" && {
 
 yon "Install websites and their dependencies?" && {
 	for website in /etc/nginx/sites-enabled/*; do
-		w1=${website%.*}
-		w2="sites/$w1/$w1.service"
+		w1=$(basename ${website%.*})
+		w2="sites/$w2/$w2.service"
 		cp $w2 /etc/systemd/system/
 
 		for package in $(cat /var/sites/$w1/dependencies.txt); do
@@ -66,14 +66,14 @@ yon "Install websites and their dependencies?" && {
 
 	systemctl daemon-reload
 
-	for website in /var/sites/*; do
-		update "Starting up $website..."
-		w="$(basename $website)"
-		systemctl enable $w 1>/dev/null
-		systemctl start $w 1>/dev/null
-		systemctl status $w 1>/dev/null
-		[ $? -ne 0 ] && { error "Failed to start up $website"; exit 1; }
-		success "Started up $website!"
+	for website in /etc/nginx/sites-enabled/*; do
+		w1="$(basename ${website%.*})"
+		update "Starting up $w1..."
+		systemctl enable $w1 1>/dev/null
+		systemctl start $w1 1>/dev/null
+		systemctl status $w1 1>/dev/null
+		[ $? -ne 0 ] && { error "Failed to start up $w1"; exit 1; }
+		success "Started up $w1!"
 	done
 }
 
