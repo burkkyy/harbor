@@ -37,9 +37,11 @@ if [[ ${id -u} -ne 0 ]]; then
 	[ $? -ne 0 ] && { error "Please run as root"; exit 1; }
 fi
 
-# Install nginx
 which nginx
 [ $? -ne 0 ] && yes | apt install nginx
+
+which snap
+[ $? -ne 0 ] && yes | apt install snapd
 
 cp -r nginx/* /etc/nginx/
 cp -r sites /var/
