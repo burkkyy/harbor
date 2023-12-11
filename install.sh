@@ -46,7 +46,7 @@ which certbot 1>/dev/null
 
 yon "Do you want to clear current nginx config?" && {
 	rm -r /etc/nginx/sites-enabled/*;
-	rm -r /etc/nginx/sites-availble/*;
+	rm -r /etc/nginx/sites-available/*;
 	cp -r nginx/* /etc/nginx/;
 }
 
