@@ -56,12 +56,8 @@ yon "Install nginx config?" && {
 yon "Install websites and their dependencies?" && {
 	for website in /etc/nginx/sites-enabled/*; do
 		w1=$(basename ${website%.*})
-		w2="sites/$w2/$w2.service"
+		w2="sites/$w1/$w1.service"
 		cp $w2 /etc/systemd/system/
-
-		for package in $(cat /var/sites/$w1/dependencies.txt); do
-			yes | apt install $package
-		done
 	done
 
 	systemctl daemon-reload
