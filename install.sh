@@ -58,7 +58,7 @@ systemctl start nginx
 [ $? -ne 0 ] && exit 1
 
 # Start certbot
-yon "Do you want certbot to manage ssl?" && certbot --nginx
+yon "Do you want certbot to manage ssl?" && certbot --nginx -d calebburke.dev
 
 # Reset sudo auth timestamp
 which sudo 1>/dev/null
