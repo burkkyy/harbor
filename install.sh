@@ -39,15 +39,28 @@ which nginx 1>/dev/null 2>/dev/null
 which certbot 1>/dev/null 2>/dev/null
 [ $? -ne 0 ] && yes | apt install certbot
 
-yon "Install nginx config and websites?" && {
+yon "Install nginx config?" && {
 	rm -r /etc/nginx/sites-enabled/*
 	rm -r /etc/nginx/sites-available/*
 	cp -r nginx/* /etc/nginx/
 	cp -r sites /var/
+	
+	# Start nginx
+	systemctl enable nginx
+	systemctl start nginx
+	[ $? -ne 0 ] && exit 1
+	
+}
 
+yon "Install websites?" && {
 	for website in /var/sites/*; do
-		w2="sites/$(basename $website)/$(basename $website).service"
+		w1="$(basename $website)"
+		w2="sites/$w1/$w1.service"
 		cp $w2 /etc/systemd/system/
+
+		for package in $(cat $website/dependencies.txt); do
+			yes | apt install $package
+		done
 	done
 
 	systemctl daemon-reload
@@ -56,16 +69,12 @@ yon "Install nginx config and websites?" && {
 		w="$(basename $website)"
 		systemctl enable $w
 		systemctl start $w
+		[ $? -ne 0 ] && exit 1
 	done
-
-	# Start nginx
-	systemctl enable nginx
-	systemctl start nginx
-	[ $? -ne 0 ] && exit 1
 }
 
 yon "Do you want certbot to manage ssl?" && {
-	certbot --nginx;
+	certbot --nginx
 }
 
 # Reset sudo auth timestamp
