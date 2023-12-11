@@ -30,7 +30,8 @@ yon(){
 }
 
 # Ensure root
-if [[ ${id -u} -ne 0 ]]; then
+
+if [[ $(id -u) -ne 0 ]]; then
 	which sudo
 	[ $? -ne 0 ] && { error "Please run as root"; exit 1; }
 	sudo -kv
