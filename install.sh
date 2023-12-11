@@ -30,7 +30,6 @@ yon(){
 }
 
 # Ensure root
-
 if [[ $(id -u) -ne 0 ]]; then
 	which sudo
 	[ $? -ne 0 ] && { error "Please run as root"; exit 1; }
@@ -38,11 +37,15 @@ if [[ $(id -u) -ne 0 ]]; then
 	[ $? -ne 0 ] && { error "Please run as root"; exit 1; }
 fi
 
-which nginx
+# Install dependencies
+which nginx 1>/dev/null
 [ $? -ne 0 ] && yes | apt install nginx
 
-which snap
+which snap 1>/dev/null
 [ $? -ne 0 ] && yes | apt install snapd
+
+snap install --classic certbot
+ln -s /snap/bin/certbot /usr/bin/certbot
 
 cp -r nginx/* /etc/nginx/
 cp -r sites /var/
@@ -50,6 +53,9 @@ cp -r sites /var/
 # Start nginx
 systemctl enable nginx
 systemctl start nginx
+
+# Start certbot
+certbot --nginx
 
 # Reset sudo auth timestamp
 which sudo
