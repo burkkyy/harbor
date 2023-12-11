@@ -41,11 +41,8 @@ fi
 which nginx 1>/dev/null
 [ $? -ne 0 ] && yes | apt install nginx
 
-which snap 1>/dev/null
-[ $? -ne 0 ] && yes | apt install snapd
-
-snap install --classic certbot
-ln -s /snap/bin/certbot /usr/bin/certbot
+which certbot 1>/dev/null
+[ $? -ne 0 ] && yes | apt install certbot
 
 cp -r nginx/* /etc/nginx/
 cp -r sites /var/
@@ -55,7 +52,7 @@ systemctl enable nginx
 systemctl start nginx
 
 # Start certbot
-certbot --nginx
+yon "Do you want certbot to manage ssl?" && certbot --nginx
 
 # Reset sudo auth timestamp
 which sudo
