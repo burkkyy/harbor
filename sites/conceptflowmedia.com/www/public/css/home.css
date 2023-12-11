@@ -1,0 +1,294 @@
+:root {
+    --navbar-height: 60px;
+    --navbar-padding-top: 30px;
+    --navbar-padding-bottom: 10px;
+    --navbar-scroll-margin: calc(var(--navbar-height) + var(--navbar-padding-top) + var(--navbar-padding-bottom));
+    --body-color: #2D2D2A;
+}
+
+html {
+    scroll-snap-type: y proximity;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+h1 {
+    color: black;
+    font-family: Swear Display;
+    font-size: 60px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+h2 {
+    color: #034001;
+    font-family: Swear Display;
+    font-size: 40px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+h3 {
+    color: var(--body-color);
+    font-family: Roboto;
+    font-size: 22px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+p {
+    padding-top: 1em;
+    color: var(--body-color);
+    font-family: Century;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+}
+
+section {
+    height: 100vh;
+    padding-top: var(--nav-bar-height);
+    scroll-snap-align: start;
+    scroll-margin-top: var(--navbar-scroll-margin);
+}
+
+#navbar-main {
+    position: fixed;
+    top: 0;
+
+    width: 100%;
+    height: var(--navbar-height);
+    padding-top: var(--navbar-padding-top);
+    padding-bottom: var(--navbar-padding-bottom);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: transparent;
+    z-index: 1000;
+}
+
+.navbar-child {
+    width: 20em;
+    margin: 0px 50px 0px 50px;
+}
+
+#navbar-contact-us {
+    float: right;
+    width: fit-content;
+    padding: 5px 20px 5px 20px;
+    border-radius: 200px;
+    border: 1px solid var(--body-color);
+}
+
+#section-home-image {
+    height: 100%;
+    width: 100%;
+
+    background-color: red;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#section-home-message {
+    width: 30ch;
+
+    color: #034001;
+    text-align: center;
+
+    font-family: Swear Display;
+    font-size: 64px;
+    font-weight: 300;
+    z-index: 999;
+}
+
+#section-home-cloud1 {
+    position: absolute;
+    top: 11vh;
+    left: 21vh;
+}
+
+#section-home-cloud2 {
+    position: absolute;
+    top: -6vh;
+    left: 67vh;
+}
+
+#section-home-cloud3 {
+    position: absolute;
+    top: -1vh;
+    left: 1vh;
+}
+
+#section-about {
+    display: flex;
+    justify-content: center;
+}
+
+#section-about-container {
+    width: 55%;
+    padding-bottom: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#section-about-image {
+    width: 50vh;
+}
+
+#section-about-info {
+    width: 34ch;
+    display: flex;
+    flex-direction: column;
+}
+
+#section-info {
+    height: 200vh;
+    padding-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-infobox {
+    padding-top: 6em;
+    padding-bottom: 3em;
+    display: flex;
+}
+
+.section-infobox-info {
+    padding-left: 6em;
+    width: 40vh;
+}
+
+.section-infobox-info h2 {
+    padding-top: 1em;
+    font-size: 25px;
+    white-space: wrap;
+}
+
+.infobox-image {
+    width: 40vh;
+}
+
+#infobox-socialmedia-info {
+    padding-right: 6em;
+}
+
+#infobox-socialmedia-info h1 {
+    white-space: wrap;
+}
+
+#section-team {
+    scroll-snap-align: none;
+    height: 80vh;
+    padding-top: 15%;
+    background-color: #034001;
+    display: flex;
+    justify-content: center;
+}
+
+#section-team-info {
+    width: 18%;
+    padding-right: 5em;
+}
+
+#section-team-info-intro {
+    color: #F7F5ED;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#section-team-info-title {
+    padding-top: 5%;
+    color: #F7F5ED;
+    font-family: Swear Display;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 40px;
+}
+
+#section-team-info-info {
+    padding-top: 5%;
+    color: #f7f5edc0;
+    font-family: Century;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    white-space: wrap;
+}
+
+.section-team-member {
+    padding-right: 5em;
+}
+
+.section-team-image {
+
+}
+
+.section-team-name {
+    height: 3ch;
+    color: #F7F5ED;
+    font-family: Degular Display;
+    font-size: 31px;
+    font-weight: 500;
+    line-height: 58px;
+}
+
+.section-team-role {
+    height: fit-content;
+    color: #f7f5edb0;
+    font-family: Century;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 27px;
+}
+
+#footer {
+    height: 15vh;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#footer-links {
+    width: 40%;
+    margin-left: 5em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-links-link {
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#footer-icons {
+    width: 15%;
+    margin-left: 5em;
+    margin-right: 5em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-icons-icon {
+    padding: 5px;
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+}
