@@ -58,7 +58,7 @@ systemctl start nginx
 [ $? -ne 0 ] && exit 1
 
 yon "Do you want certbot to manage ssl?" && {
-	for website in ./nginx/sites-enabled; do
+	for website in /etc/nginx/sites-enabled/*.conf; do
 		certbot --nginx -d $website
 	done
 }
