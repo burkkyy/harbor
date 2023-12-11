@@ -44,15 +44,16 @@ yon "Install nginx config?" && {
 	rm -r /etc/nginx/sites-available/*
 	cp -r nginx/* /etc/nginx/
 	cp -r sites /var/
-	
-	# Start nginx
+
+	update "Starting up nginx daemon..."
 	systemctl enable nginx
 	systemctl start nginx
-	[ $? -ne 0 ] && exit 1
-	
+	systemctl status nginx
+	[ $? -ne 0 ] && { error "Failed to start up nginx daemon!"; exit 1; }
+	success "Successfully started up nginx daemon!"
 }
 
-yon "Install websites?" && {
+yon "Install websites and their dependencies?" && {
 	for website in /var/sites/*; do
 		w1="$(basename $website)"
 		w2="sites/$w1/$w1.service"
@@ -66,10 +67,13 @@ yon "Install websites?" && {
 	systemctl daemon-reload
 
 	for website in /var/sites/*; do
+		update "Starting up $website..."
 		w="$(basename $website)"
 		systemctl enable $w
 		systemctl start $w
-		[ $? -ne 0 ] && exit 1
+		systemctl status $w
+		[ $? -ne 0 ] && { error "Failed to start up $website"; exit 1; }
+		success "Started up $website!"
 	done
 }
 
