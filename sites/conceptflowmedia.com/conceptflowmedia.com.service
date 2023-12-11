@@ -1,0 +1,14 @@
+[Unit]
+Description=Cenceptflowmedia website powered by NodeJS
+
+[Service]
+ExecStart=/var/sites/conceptflowmedia.com/start.sh
+Restart=always
+User=nobody
+Group=nogroup
+Environment=NODE_ENV=production
+WorkingDirectory=/var/sites/conceptflowmedia.com/www/
+
+[Install]
+WantedBy=muli-user.target
+

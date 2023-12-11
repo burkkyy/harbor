@@ -30,40 +30,45 @@ yon(){
 }
 
 # Ensure root
-if [[ $(id -u) -ne 0 ]]; then
-	which sudo
-	[ $? -ne 0 ] && { error "Please run as root"; exit 1; }
-	sudo -kv
-	[ $? -ne 0 ] && { error "Please run as root"; exit 1; }
-fi
+[ $(id -u) -ne 0 ] && { error "Please run as root"; exit 1; }
 
 # Install dependencies
-which nginx 1>/dev/null
+which nginx 1>/dev/null 2>/dev/null
 [ $? -ne 0 ] && yes | apt install nginx
 
-which certbot 1>/dev/null
+which certbot 1>/dev/null 2>/dev/null
 [ $? -ne 0 ] && yes | apt install certbot
 
-yon "Do you want to clear current nginx config?" && {
-	rm -r /etc/nginx/sites-enabled/*;
-	rm -r /etc/nginx/sites-available/*;
-	cp -r nginx/* /etc/nginx/;
+yon "Install nginx config and websites?" && {
+	rm -r /etc/nginx/sites-enabled/*
+	rm -r /etc/nginx/sites-available/*
+	cp -r nginx/* /etc/nginx/
+	cp -r sites /var/
+
+	for website in /var/sites/*; do
+		w2="sites/$(basename $website)/$(basename $website).service"
+		cp $w2 /etc/systemd/system/
+	done
+
+	systemctl daemon-reload
+
+	for website in /var/sites/*; do
+		w="$(basename $website)"
+		systemctl enable $w
+		systemctl start $w
+	done
+
+	# Start nginx
+	systemctl enable nginx
+	systemctl start nginx
+	[ $? -ne 0 ] && exit 1
 }
 
-cp -r sites /var/
-
-# Start nginx
-systemctl enable nginx
-systemctl start nginx
-[ $? -ne 0 ] && exit 1
-
 yon "Do you want certbot to manage ssl?" && {
-	for website in /etc/nginx/sites-enabled/*.conf; do
-		certbot --nginx -d $website
-	done
+	certbot --nginx;
 }
 
 # Reset sudo auth timestamp
-which sudo 1>/dev/null
+which sudo 1>/dev/null 2>/dev/null
 [ $? -eq 0 ] && sudo -k
 
