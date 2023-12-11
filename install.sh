@@ -44,17 +44,23 @@ which nginx 1>/dev/null
 which certbot 1>/dev/null
 [ $? -ne 0 ] && yes | apt install certbot
 
-cp -r nginx/* /etc/nginx/
+yon "Do you want to clear current nginx config?" && {
+	rm -r /etc/nginx/sites-enabled/*;
+	rm -r /etc/nginx/sites-availble/*;
+	cp -r nginx/* /etc/nginx/;
+}
+
 cp -r sites /var/
 
 # Start nginx
 systemctl enable nginx
 systemctl start nginx
+[ $? -ne 0 ] && exit 1
 
 # Start certbot
 yon "Do you want certbot to manage ssl?" && certbot --nginx
 
 # Reset sudo auth timestamp
-which sudo
+which sudo 1>/dev/null
 [ $? -eq 0 ] && sudo -k
 
