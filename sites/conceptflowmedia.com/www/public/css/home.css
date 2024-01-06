@@ -1,0 +1,292 @@
+:root {
+    --navbar-height: 60px;
+    --navbar-padding-top: 1rem;
+    --navbar-padding-bottom: 1rem;
+    --navbar-scroll-margin: calc(var(--navbar-height) + var(--navbar-padding-top) + var(--navbar-padding-bottom));
+    --body-color: #2D2D2A;
+}
+
+html {
+    scroll-snap-type: y proximity;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+h1 {
+    color: black;
+    font-family: Swear Display;
+    font-size: 2.5vw;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+h2 {
+    color: #034001;
+    font-family: Swear Display;
+    font-size: 2.5em;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+h3 {
+    color: var(--body-color);
+    font-family: Roboto;
+    font-size: 1.5em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+p {
+    padding-top: 1em;
+    color: var(--body-color);
+    font-family: Century;
+    font-size: 1.1em;
+    font-weight: 400;
+    line-height: 1.4em;
+}
+
+section {
+    height: 100vh;
+    width: 100%;
+    padding-top: var(--nav-bar-height);
+    scroll-snap-align: start;
+    scroll-margin-top: var(--navbar-scroll-margin);
+}
+
+#navbar-main {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    padding-top: var(--navbar-padding-top);
+    padding-bottom: var(--navbar-padding-bottom);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    z-index: 1000;
+}
+
+.navbar-child {
+    width: 5%;
+    margin: 0% 2% 0% 2%;
+}
+
+#navbar-contact-us {
+    float: right;
+    width: fit-content;
+    text-wrap: nowrap;
+    padding: 5px 20px 5px 20px;
+    border-radius: 200px;
+    border: 1px solid var(--body-color);
+}
+
+#section-home-image {
+    height: 100%;
+    width: 100%;
+
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#section-home-message {
+    width: 30ch;
+
+    color: #034001;
+    text-align: center;
+
+    font-family: Swear Display;
+    font-size: 4.3em;
+    font-weight: 300;
+    z-index: 999;
+}
+
+#section-home-cloud1 {
+    position: absolute;
+    top: 11vh;
+    left: 21vh;
+}
+
+#section-home-cloud2 {
+    position: absolute;
+    top: -6vh;
+    left: 67vh;
+}
+
+#section-home-cloud3 {
+    position: absolute;
+    top: -1vh;
+    left: 1vh;
+}
+
+#section-about {
+    display: flex;
+    justify-content: center;
+}
+
+#section-about-container {
+    width: 55%;
+    padding-bottom: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#section-about-image {
+    width: 50vh;
+}
+
+#section-about-info {
+    width: 34ch;
+    display: flex;
+    flex-direction: column;
+}
+
+#section-info {
+    height: 100%;
+    padding-top: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-infobox {
+    padding-top: 6em;
+    padding-bottom: 3em;
+    display: flex;
+}
+
+.section-infobox-info {
+    padding-left: 6em;
+    width: 40vh;
+}
+
+.section-infobox-info h2 {
+    padding-top: 1em;
+    font-size: 25px;
+    white-space: wrap;
+}
+
+.infobox-image {
+    width: 40vh;
+}
+
+#infobox-socialmedia-info {
+    padding-right: 6em;
+}
+
+#infobox-socialmedia-info h1 {
+    white-space: wrap;
+}
+
+#section-team {
+    scroll-snap-align: none;
+    height: 100%;
+    padding: 15% 0% 15% 0%;
+    background-color: #034001;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#section-team-info {
+    width: 18%;
+    padding-right: 5em;
+}
+
+#section-team-info-intro {
+    color: #F7F5ED;
+    font-family: Roboto;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#section-team-info-title {
+    padding-top: 5%;
+    color: #F7F5ED;
+    font-family: Swear Display;
+    font-size: 2.3em;
+    font-weight: 500;
+    line-height: 1em;
+}
+
+#section-team-info-info {
+    padding-top: 5%;
+    color: #f7f5edc0;
+    font-family: Century;
+    font-size: 1.2em;
+    font-weight: 400;
+    line-height: 1.3em;
+    white-space: wrap;
+}
+
+.section-team-member {
+    padding-right: 5em;
+}
+
+.section-team-image {
+    width: 18em;
+    height: 18em;
+}
+
+.section-team-name {
+    height: 3ch;
+    color: #F7F5ED;
+    font-family: Degular Display;
+    font-size: 2em;
+    font-weight: 500;
+    line-height: 2em;
+}
+
+.section-team-role {
+    height: fit-content;
+    color: #f7f5edb0;
+    font-family: Century;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 2em;
+}
+
+#footer {
+    height: 13vh;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#footer-links {
+    width: 40%;
+    margin-left: 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-links-link {
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+#footer-icons {
+    width: 15%;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-icons-icon {
+    padding: 1em;
+    color: #FFF;
+}

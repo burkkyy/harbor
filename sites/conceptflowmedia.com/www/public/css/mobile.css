@@ -1,0 +1,159 @@
+@media (max-width: 1000px) {
+    h1 {
+        font-size: 2.5vw;
+    }
+    
+    h2 {
+        font-size: 2.5em;
+    }
+    
+    h3 {
+        font-size: 1.5em;
+    }
+    
+    p {
+        padding-top: 1em;
+        font-size: 1.1em;
+        line-height: 1.4em;
+    }
+    
+    #section-home-image {
+        height: 100%;
+        width: 100%;
+    }
+    
+    #section-home-message {
+        width: 30ch;
+        font-size: 10vw;
+    }
+    
+    #section-about-container {
+        width: 55%;
+        padding-bottom: 10%;
+    }
+    
+    #section-about-image {
+        width: 50vh;
+    }
+    
+    #section-about-info {
+        width: 34ch;
+    }
+    
+    #section-info {
+        height: 100%;
+        padding-top: 2%;
+    }
+    
+    .section-infobox {
+        padding-top: 6em;
+        padding-bottom: 3em;
+    }
+    
+    .section-infobox-info {
+        padding-left: 6em;
+        width: 40vh;
+    }
+    
+    .section-infobox-info h2 {
+        padding-top: 1em;
+        font-size: 25px;
+    }
+    
+    .infobox-image {
+        width: 40vh;
+    }
+    
+    #infobox-socialmedia-info {
+        padding-right: 6em;
+    }
+    
+    #section-team {
+        height: 100%;
+        padding: 15% 0% 15% 0%;
+    }
+    
+    #section-team-info {
+        width: 18%;
+        padding-right: 5em;
+    }
+    
+    #section-team-info-intro {
+        font-size: 1.2em;
+    }
+    
+    #section-team-info-title {
+        padding-top: 5%;
+        font-size: 2.3em;
+        line-height: 1em;
+    }
+    
+    #section-team-info-info {
+        padding-top: 5%;
+        font-size: 1.2em;
+        line-height: 1.3em;
+    }
+    
+    .section-team-member {
+        padding-right: 5em;
+    }
+    
+    .section-team-image {
+        width: 18em;
+        height: 18em;
+    }
+    
+    .section-team-name {
+        height: 3ch;
+        font-size: 2em;
+        line-height: 2em;
+    }
+    
+    .section-team-role {
+        font-size: 1em;
+        line-height: 2em;
+    }
+    
+    #footer {
+        height: 13vh;
+    }
+    
+    #footer-links {
+        width: 40%;
+        margin-left: 5rem;
+    }
+    
+    .footer-links-link {
+        font-size: 1.5em;
+    }
+    
+    #footer-icons {
+        width: 15%;
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+    
+    .footer-icons-icon {
+        padding: 1em;
+    }    
+
+    #navbar-main #navbar-logo {
+        display: none;
+    }
+
+    #section-about-image {
+        display: none;
+    }
+
+    #infobox-branding-image {
+        display: none;
+    }
+
+    #infobox-socialmedia-image {
+        display: none;
+    }
+    
+    #infobox-ads-image {
+        display: none;
+    }
+}
