@@ -1,81 +1,92 @@
 @media (max-width: 1000px) {
     h1 {
-        font-size: 2.5vw;
+        font-size: 2.3em;
+        line-height: 1em;
     }
     
     h2 {
-        font-size: 2.5em;
+        font-size: 1.7em;
+        line-height: 1em;
     }
     
     h3 {
-        font-size: 1.5em;
+        font-size: 1em;
+        line-height: 1.5em;
     }
     
     p {
-        padding-top: 1em;
+        padding-top: .6em;
         font-size: 1.1em;
-        line-height: 1.4em;
+        line-height: 1.5em;
     }
-    
-    #section-home-image {
-        height: 100%;
-        width: 100%;
+
+    #navbar-icon {
+        padding: 0em 0em 0em 1em;
     }
-    
+
     #section-home-message {
-        width: 30ch;
+        width: 100%;
         font-size: 10vw;
     }
     
-    #section-about-container {
-        width: 55%;
-        padding-bottom: 10%;
+    #section-home-cloud1 {
+        height: 100%;
+        width: 80%;
+        position: absolute;
+        top: 3vh;
+        left: -11vh;
     }
-    
-    #section-about-image {
-        width: 50vh;
+
+    #section-home-cloud2 {
+        height: 100%;
+        width: 70%;
+        position: absolute;
+        top: 8vh;
+        left: 26%;
+    }
+
+    #section-home-cloud3 {
+        height: 100%;
+        width: 40%;
+        position: absolute;
+        top: 0vh;
+        left: 60%;
+    }
+
+    /* Fix 1 */
+    #section-about-container {
+        padding: 0em 0em 0em 2em;
+        width: 100%;
     }
     
     #section-about-info {
         width: 34ch;
     }
-    
-    #section-info {
-        height: 100%;
-        padding-top: 2%;
-    }
-    
+
     .section-infobox {
-        padding-top: 6em;
-        padding-bottom: 3em;
+        padding: 0;
     }
-    
-    .section-infobox-info {
-        padding-left: 6em;
-        width: 40vh;
+
+    #infobox-branding-info {
+        padding: 6em 0em 3em 0em;
     }
-    
-    .section-infobox-info h2 {
-        padding-top: 1em;
-        font-size: 25px;
-    }
-    
-    .infobox-image {
-        width: 40vh;
-    }
-    
+
     #infobox-socialmedia-info {
-        padding-right: 6em;
+        padding: 3em 0em 3em 0em;
     }
-    
+
+    #infobox-ads-info {
+        padding: 3em 0em 6em 0em;
+    }
+
     #section-team {
         height: 100%;
         padding: 15% 0% 15% 0%;
     }
     
     #section-team-info {
-        width: 18%;
-        padding-right: 5em;
+        width: fit-content;
+        padding: 2em 0em 2em 2em;
     }
     
     #section-team-info-intro {
@@ -95,7 +106,7 @@
     }
     
     .section-team-member {
-        padding-right: 5em;
+        padding: 3em 0em 5em 0em;
     }
     
     .section-team-image {
@@ -115,27 +126,26 @@
     }
     
     #footer {
-        height: 13vh;
+        height: fit-content;
     }
     
     #footer-links {
-        width: 40%;
-        margin-left: 5rem;
+        margin: 0em 0em 0em 1em;
+        padding: 1em 0em 1em 0em;
+        justify-content: center;
     }
     
     .footer-links-link {
-        font-size: 1.5em;
+        padding: .5em 0em .5em 0em;
     }
     
     #footer-icons {
-        width: 15%;
-        margin-left: 5rem;
-        margin-right: 5rem;
+        margin: 5em 0em 0em 0em;
     }
     
     .footer-icons-icon {
         padding: 1em;
-    }    
+    }
 
     #navbar-main #navbar-logo {
         display: none;
@@ -145,15 +155,7 @@
         display: none;
     }
 
-    #infobox-branding-image {
-        display: none;
-    }
-
-    #infobox-socialmedia-image {
-        display: none;
-    }
-    
-    #infobox-ads-image {
+    .infobox-image {
         display: none;
     }
 }

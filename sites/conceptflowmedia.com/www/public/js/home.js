@@ -3,14 +3,20 @@
 
     Don't load in clouds on mobile.
 */
-window.addEventListener('DOMContentLoaded', () => {
-    const clouds = '<img id="section-home-cloud1" alt="cloud 1" src="images/clouds/cloud1.png">\
-    <img id="section-home-cloud2" alt="cloud 2" src="images/clouds/cloud2.png">\
-    <img id="section-home-cloud3" alt="cloud 3" src="images/clouds/cloud2.png">';
+function create_image(id, alt, src) {
+    const img = document.createElement('img');
+    img.id = id;
+    img.alt = alt;
+    img.src = src;
+    return img;
+}
 
-    if(window.innerWidth > 1000){
-        document.getElementById('section-home-clouds').innerHTML = clouds;
-    }
+window.addEventListener('DOMContentLoaded', () => {
+    //if(window.innerWidth > 768){
+        const container = document.getElementById('section-home-clouds');
+        container.appendChild(create_image("section-home-cloud2", "cloud 2", "images/clouds/cloud2.png"));
+        container.appendChild(create_image("section-home-cloud3", "cloud 3", "images/clouds/cloud2.png"));
+    //}
 });
 
 /*
