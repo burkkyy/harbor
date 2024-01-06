@@ -1,7 +1,7 @@
 :root {
     --navbar-height: 60px;
-    --navbar-padding-top: 30px;
-    --navbar-padding-bottom: 10px;
+    --navbar-padding-top: 1rem;
+    --navbar-padding-bottom: 1rem;
     --navbar-scroll-margin: calc(var(--navbar-height) + var(--navbar-padding-top) + var(--navbar-padding-bottom));
     --body-color: #2D2D2A;
 }
@@ -17,7 +17,7 @@ body {
 h1 {
     color: black;
     font-family: Swear Display;
-    font-size: 60px;
+    font-size: 2.5vw;
     font-weight: 500;
     white-space: nowrap;
 }
@@ -25,7 +25,7 @@ h1 {
 h2 {
     color: #034001;
     font-family: Swear Display;
-    font-size: 40px;
+    font-size: 2.5em;
     font-weight: 500;
     white-space: nowrap;
 }
@@ -33,7 +33,7 @@ h2 {
 h3 {
     color: var(--body-color);
     font-family: Roboto;
-    font-size: 22px;
+    font-size: 1.5em;
     font-weight: 600;
     white-space: nowrap;
 }
@@ -42,13 +42,14 @@ p {
     padding-top: 1em;
     color: var(--body-color);
     font-family: Century;
-    font-size: 18px;
+    font-size: 1.1em;
     font-weight: 400;
-    line-height: 26px;
+    line-height: 1.4em;
 }
 
 section {
     height: 100vh;
+    width: 100%;
     padding-top: var(--nav-bar-height);
     scroll-snap-align: start;
     scroll-margin-top: var(--navbar-scroll-margin);
@@ -57,7 +58,6 @@ section {
 #navbar-main {
     position: fixed;
     top: 0;
-
     width: 100%;
     height: var(--navbar-height);
     padding-top: var(--navbar-padding-top);
@@ -65,19 +65,19 @@ section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     background-color: transparent;
     z-index: 1000;
 }
 
 .navbar-child {
-    width: 20em;
-    margin: 0px 50px 0px 50px;
+    width: 5%;
+    margin: 0% 2% 0% 2%;
 }
 
 #navbar-contact-us {
     float: right;
     width: fit-content;
+    text-wrap: nowrap;
     padding: 5px 20px 5px 20px;
     border-radius: 200px;
     border: 1px solid var(--body-color);
@@ -104,7 +104,7 @@ section {
     text-align: center;
 
     font-family: Swear Display;
-    font-size: 64px;
+    font-size: 4.3em;
     font-weight: 300;
     z-index: 999;
 }
@@ -151,7 +151,7 @@ section {
 }
 
 #section-info {
-    height: 200vh;
+    height: 100%;
     padding-top: 2%;
     display: flex;
     flex-direction: column;
@@ -189,10 +189,11 @@ section {
 
 #section-team {
     scroll-snap-align: none;
-    height: 80vh;
-    padding-top: 15%;
+    height: 100%;
+    padding: 15% 0% 15% 0%;
     background-color: #034001;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -204,7 +205,7 @@ section {
 #section-team-info-intro {
     color: #F7F5ED;
     font-family: Roboto;
-    font-size: 20px;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
@@ -212,18 +213,18 @@ section {
     padding-top: 5%;
     color: #F7F5ED;
     font-family: Swear Display;
-    font-size: 40px;
+    font-size: 2.3em;
     font-weight: 500;
-    line-height: 40px;
+    line-height: 1em;
 }
 
 #section-team-info-info {
     padding-top: 5%;
     color: #f7f5edc0;
     font-family: Century;
-    font-size: 18px;
+    font-size: 1.2em;
     font-weight: 400;
-    line-height: 27px;
+    line-height: 1.3em;
     white-space: wrap;
 }
 
@@ -232,29 +233,30 @@ section {
 }
 
 .section-team-image {
-
+    width: 18em;
+    height: 18em;
 }
 
 .section-team-name {
     height: 3ch;
     color: #F7F5ED;
     font-family: Degular Display;
-    font-size: 31px;
+    font-size: 2em;
     font-weight: 500;
-    line-height: 58px;
+    line-height: 2em;
 }
 
 .section-team-role {
     height: fit-content;
     color: #f7f5edb0;
     font-family: Century;
-    font-size: 17px;
+    font-size: 1em;
     font-weight: 400;
-    line-height: 27px;
+    line-height: 2em;
 }
 
 #footer {
-    height: 15vh;
+    height: 13vh;
     background-color: black;
     display: flex;
     justify-content: space-between;
@@ -263,7 +265,7 @@ section {
 
 #footer-links {
     width: 40%;
-    margin-left: 5em;
+    margin-left: 5rem;
     display: flex;
     justify-content: space-between;
 }
@@ -272,23 +274,19 @@ section {
     color: #FFF;
     text-align: center;
     font-family: Roboto;
-    font-size: 20px;
+    font-size: 1.5em;
     font-weight: 500;
 }
 
 #footer-icons {
     width: 15%;
-    margin-left: 5em;
-    margin-right: 5em;
+    margin-left: 5rem;
+    margin-right: 5rem;
     display: flex;
     justify-content: space-between;
 }
 
 .footer-icons-icon {
-    padding: 5px;
+    padding: 1em;
     color: #FFF;
-    text-align: center;
-    font-family: Roboto;
-    font-size: 20px;
-    font-weight: 500;
 }

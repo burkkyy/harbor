@@ -1,4 +1,19 @@
 /*
+    Image optimizer for mobile
+
+    Don't load in clouds on mobile.
+*/
+window.addEventListener('DOMContentLoaded', () => {
+    const clouds = '<img id="section-home-cloud1" alt="cloud 1" src="images/clouds/cloud1.png">\
+    <img id="section-home-cloud2" alt="cloud 2" src="images/clouds/cloud2.png">\
+    <img id="section-home-cloud3" alt="cloud 3" src="images/clouds/cloud2.png">';
+
+    if(window.innerWidth > 1000){
+        document.getElementById('section-home-clouds').innerHTML = clouds;
+    }
+});
+
+/*
     Navbar background
 
     Sets the navbar background the white once its past the home section

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ConceptFlow Media</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
 </head>
 <body>
     <nav id="navbar-main">
@@ -29,16 +30,14 @@
             <path d="M204.281 15.6819C203.205 14.6075 201.924 13.742 200.472 13.1097C199.015 12.4761 197.443 12.1553 195.8 12.1553C194.156 12.1553 192.591 12.4761 191.15 13.1097C189.711 13.742 188.438 14.6169 187.364 15.7075C186.29 16.7982 185.425 18.0789 184.795 19.516C184.162 20.9571 183.841 22.5222 183.841 24.1683C183.841 25.8157 184.162 27.3876 184.795 28.8435C185.427 30.2981 186.292 31.5802 187.366 32.6546C188.439 33.7291 189.721 34.5959 191.175 35.2282C192.63 35.8618 194.201 36.1827 195.847 36.1827C197.493 36.1827 199.057 35.8618 200.497 35.2282C201.935 34.5959 203.208 33.7224 204.283 32.6304C205.359 31.5384 206.216 30.2564 206.831 28.8193C207.448 27.3781 207.761 25.8143 207.761 24.1696C207.761 22.5263 207.448 20.9544 206.831 19.4971C206.214 18.0425 205.356 16.7591 204.281 15.6819ZM189.628 31.1124C188.844 29.9975 188.232 28.7263 187.81 27.3364C187.387 25.9464 187.172 24.5835 187.172 23.2839C187.172 22.107 187.34 20.922 187.671 19.7613C188.002 18.6033 188.504 17.5383 189.163 16.5946C189.815 15.6577 190.645 14.8892 191.627 14.3082C192.599 13.7339 193.737 13.4427 195.009 13.4427C196.464 13.4427 197.781 13.7959 198.922 14.4916C200.074 15.1953 201.052 16.1214 201.831 17.2444C202.615 18.3768 203.227 19.6481 203.65 21.0231C204.073 22.3996 204.287 23.7706 204.287 25.0985C204.287 26.2754 204.119 27.4604 203.788 28.6211C203.457 29.7778 202.955 30.8428 202.296 31.7878C201.641 32.7248 200.819 33.4945 199.853 34.0756C198.898 34.6499 197.753 34.9397 196.45 34.9397C194.995 34.9397 193.678 34.5798 192.54 33.8679C191.386 33.1494 190.407 32.2219 189.628 31.1124Z" fill="#034001"/>
             <path d="M236.195 14.3891C235.547 13.4306 234.629 12.7188 233.456 12.2712C232.816 12.0501 232.081 11.9355 231.253 11.9355H231.243C228.866 12.1095 227.159 13.3511 226.164 15.6469L225.509 17.4871L223.38 11.9355H219.768L223.713 22.3848L220.083 32.2637L213.18 14.2718C213.2 13.3955 213.679 12.8199 214.642 12.5112L216.446 11.9355H204.417L206.563 12.5166C207.144 12.673 207.745 12.9682 208.35 13.3955C208.355 13.3982 208.362 13.405 208.367 13.4077C209.157 13.9658 209.742 14.7679 210.087 15.6698L218.215 37.0899H219.3L224.206 23.7558L229.285 37.0899H230.402L236.827 19.5699C237.05 18.9241 237.162 18.2595 237.162 17.5909C237.169 16.4234 236.842 15.3476 236.195 14.3891ZM235.956 19.2261L231.157 32.23L226.013 18.8311C226.378 17.8726 226.744 16.9074 227.109 15.9367C227.464 14.9931 228.053 14.2408 228.861 13.6975C229.672 13.1542 230.566 12.8779 231.518 12.8779C232.052 12.8779 232.605 12.9695 233.148 13.1435C234.104 13.5209 234.87 14.1222 235.424 14.9337C235.978 15.7453 236.261 16.6391 236.261 17.5882C236.261 18.1436 236.157 18.6923 235.956 19.2261Z" fill="#034001"/>
         </svg>
-        <div class="navbar-child">
+        <a href="#section-team" style="text-decoration: none; color: black;" class="navbar-child">
             <div id="navbar-contact-us">CONTACT US</div>
-        </div>
+        </a>
     </nav>
     <section id="section-home">
         <div id="section-home-image" style="background-image: url('images/mountain.jpg');" loading="eager">
             <div id="section-home-message">We help local B.C businesses have a strong online presence</div>
-            <img id="section-home-cloud1" alt="cloud 1" src="images/clouds/cloud1.png">
-            <img id="section-home-cloud2" alt="cloud 2" src="images/clouds/cloud2.png">
-            <img id="section-home-cloud3" alt="cloud 3" src="images/clouds/cloud2.png">
+            <div id="section-home-clouds"></div>
         </div>
     </section>
     <section id="section-about">
@@ -86,7 +85,7 @@
             <div id="section-team-info-info">At ConceptFlow Media, we provide a comprehensive marketing solution by connecting left-brainers to right-brainers.</div>
         </div>
         <div class="section-team-member">
-            <img id="section-team-image" alt="yann" src="images/profiles/yann_nguyen.jpg" loading="lazy">
+            <img class="section-team-image" alt="yann" src="images/profiles/yann_nguyen.jpg" loading="lazy">
             <div class="section-team-name">Yann Nguyen</div>
             <div class="section-team-role">Founder</div>
         </div>
