@@ -65,14 +65,32 @@
 
     .section-infobox {
         padding: 0;
+        flex-direction: column;
+    }
+
+    .section-infobox-info h2 {
+        text-wrap: wrap;
+    }
+
+    #infobox-branding {
+        padding: 6em 0em 3em 0em;
     }
 
     #infobox-branding-info {
         padding: 6em 0em 3em 0em;
     }
 
+    #infobox-socialmedia {
+        flex-direction: column-reverse;
+        padding: 6em 0em 3em 0em;
+    }
+
     #infobox-socialmedia-info {
         padding: 3em 0em 3em 0em;
+    }
+
+    #infobox-ads {
+        padding: 6em 0em 3em 0em;
     }
 
     #infobox-ads-info {
@@ -156,6 +174,5 @@
     }
 
     .infobox-image {
-        display: none;
-    }
+        }
 }
