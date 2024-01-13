@@ -12,11 +12,13 @@ function create_image(id, alt, src) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    //if(window.innerWidth > 768){
+    /*
+    if(window.innerWidth > 768){
         const container = document.getElementById('section-home-clouds');
         container.appendChild(create_image("section-home-cloud2", "cloud 2", "images/clouds/cloud2.png"));
         container.appendChild(create_image("section-home-cloud3", "cloud 3", "images/clouds/cloud2.png"));
-    //}
+    }
+    */
 });
 
 /*
