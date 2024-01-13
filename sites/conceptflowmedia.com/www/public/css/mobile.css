@@ -68,8 +68,15 @@
         flex-direction: column;
     }
 
+    .section-infobox-info h1 {
+        text-wrap: wrap;
+        white-space: normal;
+        width: 300px;
+    }
+
     .section-infobox-info h2 {
         text-wrap: wrap;
+        white-space: normal;
     }
 
     #infobox-branding {
